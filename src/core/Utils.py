@@ -54,7 +54,7 @@ def checkArguments(args: str):
             showWarnHelp()
         
         elif( (args[1] == "-u" or args[1] == "--user") and (args[3] == "-p" or args[3] == "--password") ):
-            print("[DEV] LOGIN SIN CONTRASEÑA")
+            return True
         
         else: error()
 
@@ -65,14 +65,14 @@ def checkArguments(args: str):
             showWarnHelp()
         
         elif( (args[1] == "-u" or args[1] == "--user") and (args[3] == "-p" or args[3] == "--password") ):
-            print("[DEV] LOGIN CON CONTRASEÑA")
+            return True
         
         else: error()
 
     elif(len(args) == 6):
 
         if( (args[1] == "-u" or args[1] == "--user") and (args[3] == "-p" or args[3] == "--password") and (args[5] == "-A" or args[5] == "--admin")):
-            print("[DEV] LOGIN ADMIN")
+            return True
         
         else: error("Has introducido un parametro no valido o en una posicion no valida.")
             
