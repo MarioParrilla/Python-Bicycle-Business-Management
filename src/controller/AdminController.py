@@ -1,15 +1,18 @@
 from src.model import Club
-from view import AdminView, View
+from src.view.View import View
+from src.view.AdminView import AdminView
 
 class AdminController:
 
-    def __init__(self, club: Club):
+    def __init__(self, club: Club, dni: str, password: str):
         self.club = club
+        self.dni = dni
+        self.password = password
         self.view = AdminView()
     
     def init(self):
         while True:
-            selection = self.view.Menu()
+            selection = self.view.menu()
             if( selection   == '0' or selection == 'exit' ): break
             elif( selection == '1' ): pass
             elif( selection == '2' ): pass
@@ -20,4 +23,4 @@ class AdminController:
             elif( selection == '7' ): pass
             elif( selection == '8' ): pass
             elif( selection == '9' ): pass
-            else: View.printMessage(f'❗No existe la opcion {selection}')
+            else: View.printMessage(f'❗No existe la opcion {selection}', 'red')

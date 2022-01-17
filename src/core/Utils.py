@@ -54,7 +54,7 @@ def checkArguments(args: str):
             showWarnHelp()
         
         elif( (args[1] == "-u" or args[1] == "--user") and (args[3] == "-p" or args[3] == "--password") ):
-            return True
+            error("¡Debe introducir una constraseña!.")
         
         else: error()
 

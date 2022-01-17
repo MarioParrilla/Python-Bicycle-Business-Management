@@ -16,3 +16,5 @@ class AdminView:
         View.printMessage('8. Actualizar el control de cuotas-socio para el año en curso.');
         View.printMessage('9. Realizar el pago de una cuota por DNI de socio.');
         View.printMessage('0. Salir.');
+        print(">>> ", end = '')
+        return input()

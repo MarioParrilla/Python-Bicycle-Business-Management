@@ -15,3 +15,5 @@ class UserView:
         View.printMessage('7. Ver mi familia.');
         View.printMessage('8. Ver mi histórico y estado de cuotas con toda su información.');
         View.printMessage('0. Salir.');
+        print(">>> ", end = '')
+        return input()
