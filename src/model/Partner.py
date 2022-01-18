@@ -1,8 +1,9 @@
-from model import User, Partner, Bicyclette
+from src.model.Bicyclette import Bicyclette
+#from src.model.User import User
 
 class Partner:
-    def __init__(self, user: User, fullName: str, address: str, phonenumber: str, email: str, 
-                bicyclettes: list, family: list, childrens: list, couple: Partner = None):
+    def __init__(self, user, fullName: str, address: str, phonenumber: str, email: str, 
+                bicyclettes: list, family: list, childrens: list, couple = None):
         self.user = user
         self.fullName = fullName
         self.address = address

@@ -7,12 +7,13 @@ class UserController:
     def __init__(self, club: Club, dni: str, password: str):
         self.club = club
         self.dni = dni
+        #if(User.getUser(dni, password)): pass
         self.password = password
         self.view = UserView()
 
     def init(self):
         while True:
-            selection = self.view.menu()
+            selection = self.view.menu(self.club.name, 'usuarioPrueba', '00/00/00 - 00:00:00')
             if( selection   == '0' or selection == 'exit' ): break
             elif( selection == '1' ): pass
             elif( selection == '2' ): pass

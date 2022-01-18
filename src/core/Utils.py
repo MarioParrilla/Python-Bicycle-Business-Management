@@ -1,3 +1,4 @@
+import os
 from src.view.View import View
 
 helpData = { 
@@ -19,6 +20,9 @@ def help():
         View.printMessage(f"   { commandTitle }", 'yellow')
         View.printMessage(f"\t { helpData[commandTitle] } \n")
     View.printMessage("-------------------------", 'cyan')
+
+clear = lambda: os.system('cls' if os.name in ('nt', 'dos') else 'clear')
+
 
 def checkArguments(args: str):
 

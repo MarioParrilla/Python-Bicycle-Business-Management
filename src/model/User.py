@@ -1,5 +1,5 @@
 import hashlib
-from model import Partner
+from src.model.Partner import Partner
 
 class User:
 

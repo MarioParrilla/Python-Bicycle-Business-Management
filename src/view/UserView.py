@@ -5,7 +5,10 @@ class UserView:
     def __init__(self):
         pass
 
-    def menu(self):
+    def menu(self, clubName, userName, lastAccess):
+        View.screen(clubName, userName, lastAccess)
+        View.printMessage('Menu');
+        View.printMessage('====');
         View.printMessage('1. Ver mis próximos eventos y la lista de inscritos.');
         View.printMessage('2. Ver y apuntarme a eventos abiertos.');
         View.printMessage('3. Ver mis bicicletas.');
