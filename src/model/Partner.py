@@ -46,4 +46,4 @@ class User:
 
     def verifyPassword(self, password: str):
         encrytedPass = hashlib.sha1(bytes(password, 'utf-8'))
-        return self.password == encrytedPass.hexdigest()
+        return self._password == encrytedPass.hexdigest()

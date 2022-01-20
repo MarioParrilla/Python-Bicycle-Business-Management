@@ -1,6 +1,6 @@
 from src.model.Club import Club
 from src.model.Partner import *
-from src.view.View import View
+from src.view.View import printMessage
 from src.view.AdminView import AdminView
 
 class AdminController:
@@ -8,10 +8,13 @@ class AdminController:
     def __init__(self, club: Club, dni: str, password: str):
         self.club = club
         self.club.init()
-        self.dni = dni
-        self.user = None#if(club.getUser(dni, password)): pass
-        self.run = True
-        self.password = password
+        userChecked = club.getUser(dni, password)
+        if(userChecked!=None): 
+            self.user = userChecked
+            self.run = True
+        else:
+            self.run = False
+            printMessage('❗Error en el login: Usuario incorrecto o Contraseña incorrecta.', 'red')
         self.view = AdminView()
     
     def init(self):

@@ -12,3 +12,11 @@ class Club:
 
     def init(self):
         Persistence.init()
+        self.listOfPartners = {'00000000A' : Partner('admin', 'c/admin', '000000000', 'a@a.com', '00000000A', 'admin', True)}
+
+    def getUser(self, dni: str, password: str):
+        user = self.listOfPartners.get(dni)
+        if(user == None): return None
+        else:
+            if(user._user.verifyPassword(password)): return user._user
+            else: return None

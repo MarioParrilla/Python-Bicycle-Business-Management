@@ -1,4 +1,4 @@
-from src.view.View import View
+from src.view.View import printMessage, screen
 
 class UserView:
 
@@ -6,17 +6,17 @@ class UserView:
         pass
 
     def menu(self, clubName, userName, lastAccess):
-        View.screen(clubName, userName, lastAccess)
-        View.printMessage('Menu');
-        View.printMessage('====');
-        View.printMessage('1. Ver mis próximos eventos y la lista de inscritos.');
-        View.printMessage('2. Ver y apuntarme a eventos abiertos.');
-        View.printMessage('3. Ver mis bicicletas.');
-        View.printMessage('4. Ver mis reparaciones/mantenimientos.');
-        View.printMessage('5. Añadir nueva bicicleta.');
-        View.printMessage('6. Añadir reparación/mantenimiento a una de mis bicicletas.');
-        View.printMessage('7. Ver mi familia.');
-        View.printMessage('8. Ver mi histórico y estado de cuotas con toda su información.');
-        View.printMessage('0. Salir.');
+        screen(clubName, userName, lastAccess)
+        printMessage('Menu');
+        printMessage('====');
+        printMessage('1. Ver mis próximos eventos y la lista de inscritos.');
+        printMessage('2. Ver y apuntarme a eventos abiertos.');
+        printMessage('3. Ver mis bicicletas.');
+        printMessage('4. Ver mis reparaciones/mantenimientos.');
+        printMessage('5. Añadir nueva bicicleta.');
+        printMessage('6. Añadir reparación/mantenimiento a una de mis bicicletas.');
+        printMessage('7. Ver mi familia.');
+        printMessage('8. Ver mi histórico y estado de cuotas con toda su información.');
+        printMessage('0. Salir.');
         print(">>> ", end = '')
         return input()

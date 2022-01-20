@@ -1,5 +1,5 @@
 import os
-from src.view.View import View
+from src.view.View import printMessage
 
 helpData = { 
     "-u, --user": 'Sirve para indicar el usuario para iniciar sesion. Debe ir antes de la contraseña.' ,
@@ -8,18 +8,18 @@ helpData = {
     "-h, --help": 'Nos mostrará la explicación de los comandos del programa. Debe ir tras el nombre del programa.'
     }
 
-def showWarnHelp(): View.printMessage("❔Puedes usar -h o --help para ver los flags disponibles con su infomación.")
+def showWarnHelp(): printMessage("❔Puedes usar -h o --help para ver los flags disponibles con su infomación.")
 
 def error(msg: str):
-    View.printMessage(f"❗Error: {msg}", 'red')
+    printMessage(f"❗Error: {msg}", 'red')
     showWarnHelp()
 
 def help(): 
-    View.printMessage("-------- ❔Ayuda -------- \n", 'cyan')
+    printMessage("-------- ❔Ayuda -------- \n", 'cyan')
     for commandTitle in helpData.keys():
-        View.printMessage(f"   { commandTitle }", 'yellow')
-        View.printMessage(f"\t { helpData[commandTitle] } \n")
-    View.printMessage("-------------------------", 'cyan')
+        printMessage(f"   { commandTitle }", 'yellow')
+        printMessage(f"\t { helpData[commandTitle] } \n")
+    printMessage("-------------------------", 'cyan')
 
 clear = lambda: os.system('cls' if os.name in ('nt', 'dos') else 'clear')
 
