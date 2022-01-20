@@ -28,7 +28,6 @@ def checkArguments(args: str):
 
     if len(args) == 1: 
         error("Para iniciar sesion se necesita indicar un usuario y una constraseña.")
-        showWarnHelp()
         
     elif(len(args) == 2 and (args[1] == "-u" or args[1] == "--user" or args[1] == "-p" or args[1] == "--password" 
             or args[1] == "-h" or args[1] == "--help")):
@@ -37,25 +36,21 @@ def checkArguments(args: str):
 
         elif(args[1] == "-u" or args[1] == "--user"): 
             error("¡Debe introducir un usuario y una constraseña!.")
-            showWarnHelp()
 
         elif(args[1] == "-p" or args[1] == "--password"): 
             error("¡Debe introducir primero un usuario!.")
-            showWarnHelp()
+            
 
     elif(len(args) == 3):
         if(args[1] == "-u" or args[1] == "--user"):
             error("¡Debe introducir una contraseña para acceder a la cuenta!.")
-            showWarnHelp()
         elif(args[1] == "-p" or args[1] == "--password"):
             error("¡Debe introducir primero un usuario!.")
-            showWarnHelp()
 
     elif(len(args) == 4):
 
         if(args[1] == "-p" or args[1] == "--password"): 
             error("¡Debe introducir primero un usuario!.")
-            showWarnHelp()
         
         elif( (args[1] == "-u" or args[1] == "--user") and (args[3] == "-p" or args[3] == "--password") ):
             error("¡Debe introducir una constraseña!.")
@@ -66,7 +61,6 @@ def checkArguments(args: str):
 
         if(args[1] == "-p" or args[1] == "--password"): 
             error("¡Debe introducir primero un usuario!.")
-            showWarnHelp()
         
         elif( (args[1] == "-u" or args[1] == "--user") and (args[3] == "-p" or args[3] == "--password") ):
             return True

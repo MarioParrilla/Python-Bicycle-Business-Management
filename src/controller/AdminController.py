@@ -8,7 +8,7 @@ class AdminController:
     def __init__(self, club: Club, dni: str, password: str):
         self.club = club
         self.dni = dni
-        #if(User.getUser(dni, password)): pass
+        #if(club.getUser(dni, password)): pass
         self.run = True
         self.password = password
         self.view = AdminView()
