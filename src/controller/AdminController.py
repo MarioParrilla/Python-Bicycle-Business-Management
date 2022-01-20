@@ -1,5 +1,5 @@
 from src.model.Club import Club
-from src.model.User import User
+from src.model.Partner import *
 from src.view.View import View
 from src.view.AdminView import AdminView
 
@@ -7,8 +7,9 @@ class AdminController:
 
     def __init__(self, club: Club, dni: str, password: str):
         self.club = club
+        self.club.init()
         self.dni = dni
-        #if(club.getUser(dni, password)): pass
+        self.user = None#if(club.getUser(dni, password)): pass
         self.run = True
         self.password = password
         self.view = AdminView()
