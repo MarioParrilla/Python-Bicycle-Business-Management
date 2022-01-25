@@ -3,11 +3,11 @@
 class Event:
     def __init__(self, date: str, maxDate: str, location: str, province: str, organizer: str, totalKM: float, 
                 price: float, eventPartners: list):
-        self.date = date
-        self.maxDate = maxDate
-        self.location = location
-        self.province = province
-        self.organizer = organizer
-        self.totalKM = totalKM
-        self.price = price
-        self.eventPartners = eventPartners
+        self._date = date
+        self._maxDate = maxDate
+        self._location = location
+        self._province = province
+        self._organizer = organizer
+        self._totalKM = totalKM
+        self._price = price
+        self._eventPartners = eventPartners

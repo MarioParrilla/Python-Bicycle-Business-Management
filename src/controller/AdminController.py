@@ -6,21 +6,24 @@ from src.view.AdminView import AdminView
 class AdminController:
 
     def __init__(self, club: Club, dni: str, password: str):
-        self.club = club
-        self.club.init()
-        userChecked = club.getUser(dni, password)
-        if(userChecked!=None): 
-            self.user = userChecked
-            self.run = True
+        self._club = club
+        self._club.init()
+        userChecked = self._club.getUser(dni, password, True)
+        if(isinstance(userChecked, User)): 
+            self._user = userChecked
+            self._run = True
+        elif(userChecked=='Not Admin'): 
+            self._run = False
+            printMessage('❗Error en el login: El usuario no es administrator.', 'red')
         else:
-            self.run = False
+            self._run = False
             printMessage('❗Error en el login: Usuario incorrecto o Contraseña incorrecta.', 'red')
-        self.view = AdminView()
+        self._view = AdminView()
     
     def init(self):
-        while self.run:
-            selection = self.view.menu(self.club.name, 'usuarioPrueba', '00/00/00 - 00:00:00')
-            if( selection   == '0' or selection == 'exit' ): self.run = False
+        while self._run:
+            selection = self._view.menu(self._club._name, self._user._dni, self._user._lastAccess)
+            if( selection   == '0' or selection == 'exit' ): self._run = False
             elif( selection == '1' ): pass
             elif( selection == '2' ): pass
             elif( selection == '3' ): pass
@@ -30,4 +33,4 @@ class AdminController:
             elif( selection == '7' ): pass
             elif( selection == '8' ): pass
             elif( selection == '9' ): pass
-            else: View.printMessage(f'❗No existe la opcion {selection}', 'red')
+            else: printMessage(f'❗No existe la opcion {selection}', 'red')

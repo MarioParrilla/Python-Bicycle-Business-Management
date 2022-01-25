@@ -3,20 +3,23 @@ from src.core import Persistence
 class Club:
 
     def __init__(self, name: str, cif: str, socialBase: str):
-        self.name = name
-        self.cif = cif
-        self.socialBase = socialBase
-        self.listOfPartners = None
-        self.listOfEvents = None
-        self.totalBalance = 0
+        self._name = name
+        self._cif = cif
+        self._socialBase = socialBase
+        self._listOfPartners = None
+        self._listOfEvents = None
+        self._totalBalance = 0
 
     def init(self):
-        Persistence.init()
-        self.listOfPartners = {'00000000A' : Partner('admin', 'c/admin', '000000000', 'a@a.com', '00000000A', 'admin', True)}
+        self._listOfPartners = Persistence.init()
 
-    def getUser(self, dni: str, password: str):
-        user = self.listOfPartners.get(dni)
+    def getUser(self, dni: str, password: str,  admin: bool = False):
+        user = self._listOfPartners.get(dni)
         if(user == None): return None
         else:
-            if(user._user.verifyPassword(password)): return user._user
+            if(user.verifyPassword(password) and not admin): return user
+            elif(admin):
+                if(user._isAdmin):  
+                    if(user.verifyPassword(password)): return user
+                else: return 'Not Admin'
             else: return None
