@@ -3,8 +3,8 @@ from src.view.View import printMessage, screen
 from src.core.Utils import checkRegex
 class View:
 
-    def __init__(self):
-        pass
+    def __init__(self, controller):
+        self.controller = controller
 
     def menu(self, clubName, userName, lastAccess):
         screen(clubName, userName, lastAccess, True)
@@ -75,7 +75,9 @@ class View:
             printMessage('Introduce un dni:', 'yellow')
             print(">>> ", end = '')
             dni = input()
-            if(checkRegex(dni, 'dni')): break;
+            if(checkRegex(dni, 'dni')): 
+                if(not(self.controller.existDni(dni))): break
+                else: printMessage('❗Introduce un dni que no exista ya')
             else: printMessage('❗Introduce un dni valido')
 
         #Request Password
@@ -100,4 +102,4 @@ class View:
                 break;
             else: printMessage('❗Introduce un valor valido')
         
-        print(f'{fullName}, {address}, {phonenumber}, {email}, {password}, {isAdmin}')
+        print(f'{fullname}, {address}, {phonenumber}, {email}, {password}, {isAdmin}')

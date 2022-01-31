@@ -23,3 +23,8 @@ class Club:
                     if(user.verifyPassword(password)): return user
                 else: return 'Not Admin'
             else: return None
+            
+    def exists(self, dni: str):
+        user = self.listOfUsers.get(dni)
+        if(user == None): return False
+        return True

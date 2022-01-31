@@ -2,11 +2,11 @@ from src.model.Club import Club
 from src.model.Partner import *
 from src.view.View import printMessage
 from src.view.AdminView import View
-
 class AdminController:
 
     def __init__(self, club: Club, dni: str, password: str):
         self.club = club
+        staticClub = club
         self.club.init()
         userChecked = self.club.getUser(dni, password, True)
         if(isinstance(userChecked, User)): 
@@ -18,7 +18,7 @@ class AdminController:
         else:
             self.run = False
             printMessage('❗Error en el login: Usuario incorrecto o Contraseña incorrecta.', 'red')
-        self.view = View()
+        self.view = View(self)
     
     def init(self):
         while self.run:
@@ -35,3 +35,5 @@ class AdminController:
             elif( selection == '9' ): pass
             else: printMessage(f'❗No existe la opcion {selection}', 'red')
 
+    def existDni(self, dni:str):
+        return self.club.exists(dni)
