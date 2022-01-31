@@ -1,1 +1,1 @@
-"[{\"dni\": \"00000000A\", \"password\": \"d033e22ae348aeb5660fc2140aec35850c4da997\", \"lastAccess\": \"00/00/00 - 00:00:00\", \"isAdmin\": true, \"paid\": true}]"
+"[{\"dni\": \"00000000A\", \"password\": \"d033e22ae348aeb5660fc2140aec35850c4da997\", \"lastAccess\": \"00/00/00 - 00:00:00\", \"isAdmin\": true, \"paid\": true}, {\"dni\": \"00000000B\", \"password\": \"d033e22ae348aeb5660fc2140aec35850c4da997\", \"lastAccess\": \"00/00/00 - 00:00:00\", \"isAdmin\": false, \"paid\": true}]"

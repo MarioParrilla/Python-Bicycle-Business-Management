@@ -14,6 +14,7 @@ def init():
     if(createUsersFile or createPartnersFile): _writeDefault({'00000000A' : User('admin', 'c/admin', '000000000', 'a@a.com', '00000000A', 'admin', True)}, createUsersFile, createPartnersFile)
     return _readDefault()
 
+#Se comrpueba si existen los ficheros por defecto y si no existen se crean con lo datos por defecto
 def _writeDefault(listOfPartners: list, createUsersFile: bool, createPartnersFile: bool): 
     listUsers = []
     listPartners = []
@@ -34,6 +35,7 @@ def _writeDefault(listOfPartners: list, createUsersFile: bool, createPartnersFil
         json.dump(json.dumps(listPartners), file)
         file.close()
 
+#Se leen llos ficheros para cargar los datos ya existentes y se relacionan cada usuario con su socio
 def _readDefault():
     listUsers = {}
 

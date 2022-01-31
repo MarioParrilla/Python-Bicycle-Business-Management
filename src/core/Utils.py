@@ -1,4 +1,4 @@
-import os
+import os, re
 from src.view.View import printMessage
 
 helpData = { 
@@ -76,3 +76,8 @@ def checkArguments(args: str):
             
 
     else: error("Has introducido un parametro no valido o en una posicion no valida.")
+
+def checkRegex(patron: str, type: str):
+    if( type == 'phonenumber' ): return bool(re.compile('(\+34|0034|34)?[ -]*(6|7)[ -]*([0-9][ -]*){8}').match(patron))
+    elif( type == 'dni' ): return bool(re.compile('^[0-9]{8}[TRWAGMYFPDXBNJZSQVHLCKE]$').match(patron))
+    elif( type == 'email' ): return bool(re.compile('[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}').match(patron))
