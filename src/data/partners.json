@@ -1,1 +1,22 @@
-"[{\"fullName\": \"admin\", \"address\": \"c/admin\", \"phonenumber\": \"000000000\", \"email\": \"a@a.com\", \"bicyclettes\": null, \"family\": null, \"childrens\": null, \"couple\": null}, {\"fullName\": \"admin2\", \"address\": \"c/admin2\", \"phonenumber\": \"100000000\", \"email\": \"b@b.com\", \"bicyclettes\": null, \"family\": null, \"childrens\": null, \"couple\": null}]"
+[
+    {
+        "fullName": "admin",
+        "address": "c/admin",
+        "phonenumber": "000000000",
+        "email": "a@a.com",
+        "bikes": null,
+        "family": null,
+        "childrens": null,
+        "couple": null
+    },
+    {
+        "fullName": "FElix valor",
+        "address": "castellanos",
+        "phonenumber": "678545678",
+        "email": "felixvalor@gmail.com",
+        "bikes": null,
+        "family": null,
+        "childrens": null,
+        "couple": null
+    }
+]

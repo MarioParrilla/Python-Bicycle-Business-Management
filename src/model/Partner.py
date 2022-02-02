@@ -15,6 +15,8 @@ class Partner:
         self.childrens = None
         self.couple = None
 
+
+
     def parseToJSON(self): 
         jsonObject = {
             'fullName': self.fullName,

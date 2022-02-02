@@ -28,3 +28,23 @@ class Club:
         user = self.listOfUsers.get(dni)
         if(user == None): return False
         return True
+
+    def savePartner(self, user: User):
+        self.listOfUsers[user.dni] =  user
+        Persistence.saveData(self.listOfUsers, True, True, False)
+
+    def addFamily(self, dniOfPartner:str, dniOfFamily:str, type: str):
+        if(type=='family'):
+            partner = self.listOfUsers.get(dniOfPartner).partner
+            if(partner.family==None): partner.family = [dniOfFamily]
+            else: partner.family.append(dniOfFamily)
+        
+        elif(type=='children'):
+            partner = self.listOfUsers.get(dniOfPartner).partner
+            if(partner.childrens==None): partner.childrens = [dniOfFamily]
+            else: partner.childrens.append(dniOfFamily)
+
+        elif(type=='couple'):
+            partner = self.listOfUsers.get(dniOfPartner).partner
+            partner.couple = dniOfFamily
+

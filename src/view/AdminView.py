@@ -1,6 +1,8 @@
 
 from src.view.View import printMessage, screen
 from src.core.Utils import checkRegex
+from src.model.Partner import User
+
 class View:
 
     def __init__(self, controller):
@@ -28,6 +30,42 @@ class View:
         printMessage('===============')
         for user in listOfUser:
             printMessage(f'{listOfUser.get(user)}\n')
+
+    def addFamilyToPartner(self):
+        partnerDni = None
+        while True:
+            printMessage('\nIntroduce el dni del socio: ')
+            print(">>> ", end = '')
+            partnerDni = input()
+            if(self.controller.existDni(partnerDni)): break;
+            else: printMessage('❗Introduce un dni valido')
+
+        run = True
+        while(run):
+            printMessage('\nIntroduce que tipo de familiar es: [Familia, Hijos, Pareja]', 'yellow')
+            print(">>> ", end = '')
+            type = input()
+            run = self.addFamiliy(partnerDni, type)
+                
+
+
+    def addFamiliy(self, partnerDni: str, type: str):
+        target = ''
+        if(type=='familia'): target = 'family'
+        elif(type=='hijos'): target = 'children'
+        elif(type=='pareja'): target = 'couple'
+        while(True):
+            printMessage(f'Introduce un dni de {type}: ')
+            print(">>> ", end = '')
+            familyDni = input()
+            
+            if(partnerDni!=familyDni):
+                if(self.controller.existDni(familyDni)): 
+                    self.controller.addFamiliy(partnerDni, familyDni, 'family')
+                    return False
+                else: printMessage('❗Introduce un dni valido') 
+            else: printMessage('❗Introduce un dni que no sea el mismo que el socio objetivo') 
+
 
     def requestNewPartner(self):
         fullname = ''
@@ -103,3 +141,4 @@ class View:
             else: printMessage('❗Introduce un valor valido')
         
         print(f'{fullname}, {address}, {phonenumber}, {email}, {password}, {isAdmin}')
+        self.controller.saveNewPartner(User(fullname, address, phonenumber, email, dni, password, isAdmin))

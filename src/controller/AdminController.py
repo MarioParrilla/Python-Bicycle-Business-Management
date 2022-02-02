@@ -6,7 +6,6 @@ class AdminController:
 
     def __init__(self, club: Club, dni: str, password: str):
         self.club = club
-        staticClub = club
         self.club.init()
         userChecked = self.club.getUser(dni, password, True)
         if(isinstance(userChecked, User)): 
@@ -26,7 +25,7 @@ class AdminController:
             if( selection   == '0' or selection == 'exit' ): self.run = False
             elif( selection == '1' ): self.view.showInfoPartners(self.club.listOfUsers)
             elif( selection == '2' ): self.view.requestNewPartner()
-            elif( selection == '3' ): pass
+            elif( selection == '3' ): self.view.addFamilyToPartner()
             elif( selection == '4' ): pass
             elif( selection == '5' ): pass
             elif( selection == '6' ): pass
@@ -37,3 +36,9 @@ class AdminController:
 
     def existDni(self, dni:str):
         return self.club.exists(dni)
+
+    def addFamiliy(self, dniOfPartner:str, dniOfFamily:str, type: str):
+        self.club.addFamily(dniOfPartner, dniOfFamily, type)
+
+    def saveNewPartner(self, user: User):
+        self.club.savePartner(user)
