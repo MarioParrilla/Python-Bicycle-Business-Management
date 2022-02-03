@@ -5,7 +5,9 @@
         "phonenumber": "000000000",
         "email": "a@a.com",
         "bikes": null,
-        "family": null,
+        "family": [
+            "76543456N"
+        ],
         "childrens": null,
         "couple": null
     },
@@ -16,7 +18,9 @@
         "email": "felixvalor@gmail.com",
         "bikes": null,
         "family": null,
-        "childrens": null,
+        "childrens": [
+            "00000000A"
+        ],
         "couple": null
     }
 ]

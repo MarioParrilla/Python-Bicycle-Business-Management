@@ -45,7 +45,8 @@ class View:
             printMessage('\nIntroduce que tipo de familiar es: [Familia, Hijos, Pareja]', 'yellow')
             print(">>> ", end = '')
             type = input()
-            run = self.addFamiliy(partnerDni, type)
+            if(type == 'familia' or type == 'hijos' or type == 'pareja'): run = self.addFamiliy(partnerDni, type)
+            else: printMessage('❗Introduce un tipo de familiar valido')
                 
 
 
@@ -61,7 +62,7 @@ class View:
             
             if(partnerDni!=familyDni):
                 if(self.controller.existDni(familyDni)): 
-                    self.controller.addFamiliy(partnerDni, familyDni, 'family')
+                    self.controller.addFamiliy(partnerDni, familyDni, target)
                     return False
                 else: printMessage('❗Introduce un dni valido') 
             else: printMessage('❗Introduce un dni que no sea el mismo que el socio objetivo') 
