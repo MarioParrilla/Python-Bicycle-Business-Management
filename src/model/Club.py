@@ -38,9 +38,9 @@ class Club:
         partner = self.listOfUsers.get(dniOfPartner).partner
         familyPartner = self.listOfUsers.get(dniOfFamily).partner
 
-        if(type=='family'):
-            if(partner.family==None): partner.family = [dniOfFamily]
-            else: partner.family.append(dniOfFamily)
+        if(type=='parent'):
+            if(partner.parents==None): partner.parents = [dniOfFamily]
+            else: partner.parents.append(dniOfFamily)
         
             if(familyPartner.family==None): familyPartner.family = [dniOfPartner]
             else: familyPartner.family.append(dniOfPartner)
@@ -49,7 +49,7 @@ class Club:
             if(partner.childrens==None): partner.childrens = [dniOfFamily]
             else: partner.childrens.append(dniOfFamily)
 
-            if(familyPartner.family==None): familyPartner.family = [dniOfPartner]
+            if(familyPartner.parents==None): familyPartner.parents = [dniOfPartner]
             else: familyPartner.family.append(dniOfPartner)
 
         elif(type=='couple'):

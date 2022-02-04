@@ -48,6 +48,14 @@ def _readDefault():
     for i in range(len(partners)):
         partner = partners[i]
         user = users[i]
-        listUsers[user['dni']] = User(partner['fullName'], partner['address'], partner['phonenumber'], partner['email'], user['dni'], user['password'], user['isAdmin'])
+
+        object = User(partner['fullName'], partner['address'], partner['phonenumber'], partner['email'], user['dni'], user['password'], user['isAdmin'])
+
+        object.partner.parents = partner['parents']
+        object.partner.childrens = partner['childrens']
+        object.partner.couple = partner['couple']
+
+        listUsers[object.dni] = object
+        
 
     return listUsers

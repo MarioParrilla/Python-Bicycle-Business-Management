@@ -11,7 +11,7 @@ class Partner:
         self.phonenumber = phonenumber
         self.email = email
         self.bikes = None
-        self.family = None
+        self.parents = None
         self.childrens = None
         self.couple = None
 
@@ -24,7 +24,7 @@ class Partner:
             'phonenumber': self.phonenumber,
             'email': self.email,
             'bikes': self.bikes,
-            'family': self.family,
+            'parents': self.parents,
             'childrens': self.childrens,
             'couple': self.couple,
         }
@@ -41,7 +41,7 @@ class User:
         self.partner = Partner(fullName, address, phonenumber, email)
 
     def __str__(self):
-        return f"Socio: {self.partner.fullName}\nDNI: {self.dni}\nEmail: {self.partner.email}\nTelefono: {self.partner.phonenumber}"
+        return f"Socio: {self.partner.fullName}\nDNI: {self.dni}\nEmail: {self.partner.email}\nTelefono: {self.partner.phonenumber}\nPadres: {self.partner.parents}\nHijos: {self.partner.childrens}\nPareja: {self.partner.couple}"
 
     def parseToJSON(self): 
         jsonObject = {

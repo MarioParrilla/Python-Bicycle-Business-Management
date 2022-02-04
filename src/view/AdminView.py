@@ -42,18 +42,18 @@ class View:
 
         run = True
         while(run):
-            printMessage('\nIntroduce que tipo de familiar es: [Familia, Hijos, Pareja]', 'yellow')
+            printMessage('\nIntroduce que tipo de familiar es: [Padre, Hijo, Pareja]', 'yellow')
             print(">>> ", end = '')
             type = input()
-            if(type == 'familia' or type == 'hijos' or type == 'pareja'): run = self.addFamiliy(partnerDni, type)
+            if(type == 'padre' or type == 'hijo' or type == 'pareja'): run = self.addFamiliy(partnerDni, type)
             else: printMessage('❗Introduce un tipo de familiar valido')
                 
 
 
     def addFamiliy(self, partnerDni: str, type: str):
         target = ''
-        if(type=='familia'): target = 'family'
-        elif(type=='hijos'): target = 'children'
+        if(type=='padre'): target = 'parent'
+        elif(type=='hijo'): target = 'children'
         elif(type=='pareja'): target = 'couple'
         while(True):
             printMessage(f'Introduce un dni de {type}: ')
