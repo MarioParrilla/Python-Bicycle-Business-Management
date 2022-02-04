@@ -28,8 +28,8 @@ class View:
     def showInfoPartners(self, listOfUser: dict):
         printMessage('\nLista de Socios', 'cyan')
         printMessage('===============')
-        for user in listOfUser:
-            printMessage(f'{listOfUser.get(user)}\n')
+        for user in sorted(listOfUser.items(), key=lambda x: x[1].partner.fullName):
+            printMessage(f'{listOfUser.get(user[0])}\n')
 
     def addFamilyToPartner(self):
         partnerDni = None

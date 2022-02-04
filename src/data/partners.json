@@ -1,6 +1,6 @@
 [
     {
-        "fullName": "admin",
+        "fullName": "Admin",
         "address": "c/admin",
         "phonenumber": "000000000",
         "email": "a@a.com",
@@ -12,7 +12,7 @@
         "couple": null
     },
     {
-        "fullName": "FElix valor",
+        "fullName": "Felix valor",
         "address": "castellanos",
         "phonenumber": "678545678",
         "email": "felixvalor@gmail.com",
