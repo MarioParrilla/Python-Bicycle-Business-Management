@@ -6,3 +6,13 @@ class Fee:
         self.isPaid = isPaid
         self.feePrice = feePrice
         self.discount = discount
+
+    def parseToJSON(self): 
+        jsonObject = {
+            'year': self.year,
+            'lastPayment': self.lastPayment,
+            'isPaid': self.isPaid,
+            'feePrice': self.feePrice,
+            'discount': self.discount,
+        }
+        return jsonObject

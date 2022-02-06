@@ -7,10 +7,10 @@
         "paid": true
     },
     {
-        "dni": "76543456N",
-        "password": "fvalor",
+        "dni": "71373589N",
+        "password": "adminM",
         "lastAccess": "00/00/00 - 00:00:00",
-        "isAdmin": false,
+        "isAdmin": true,
         "paid": true
     }
 ]

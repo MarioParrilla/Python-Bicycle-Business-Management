@@ -1,26 +1,22 @@
 [
     {
-        "fullName": "Admin",
+        "fullName": "admin",
         "address": "c/admin",
         "phonenumber": "000000000",
         "email": "a@a.com",
         "bikes": null,
-        "parents": [
-            "76543456N"
-        ],
+        "parents": null,
         "childrens": null,
         "couple": null
     },
     {
-        "fullName": "Felix valor",
-        "address": "castellanos",
-        "phonenumber": "678545678",
-        "email": "felixvalor@gmail.com",
+        "fullName": "Mario Parrilla",
+        "address": "Madrilas",
+        "phonenumber": "679708804",
+        "email": "m@m.com",
         "bikes": null,
         "parents": null,
-        "childrens": [
-            "00000000A"
-        ],
+        "childrens": null,
         "couple": null
     }
 ]

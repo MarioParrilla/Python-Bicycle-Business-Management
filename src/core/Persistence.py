@@ -1,8 +1,11 @@
 import json, os
 from src.model.Partner import *
+from src.model.Fee import Fee
+from datetime import date
 
 PATHUSER = './src/data/users.json'
 PATHPARTNER = './src/data/partners.json'
+PATHFEES = './src/data/fees.json'
 
 def init():
     createUsersFile = False
@@ -12,16 +15,19 @@ def init():
     if(not(os.path.exists(PATHPARTNER))): createPartnersFile = True
 
     if(createUsersFile or createPartnersFile): saveData({'00000000A' : User('admin', 'c/admin', '000000000', 'a@a.com', '00000000A', 'admin', True)}, createUsersFile, createPartnersFile, True)
+    saveFees({ '00000000A': { date.today().year: Fee(date.today().year, str(date.today()), True, 0, 0) } }, True)
     return _readDefault()
 
 #Se comrpueba si existen los ficheros por defecto y si no existen se crean con lo datos por defecto
-def saveData(listOfPartners: list, createUsersFile: bool, createPartnersFile: bool, encrypt: bool): 
+def saveData(listOfPartners: dict, createUsersFile: bool, createPartnersFile: bool, encrypt: bool): 
     listUsers = []
     listPartners = []
     for i in listOfPartners:
         user = listOfPartners.get(i)
-        if(encrypt): user.encryptPassword()
-        if(createUsersFile): listUsers.append(user.parseToJSON())
+        
+        if(createUsersFile): 
+            if(encrypt): user.encryptPassword()
+            listUsers.append(user.parseToJSON())
 
         if(createPartnersFile): listPartners.append(user.partner.parseToJSON())
 
@@ -33,6 +39,21 @@ def saveData(listOfPartners: list, createUsersFile: bool, createPartnersFile: bo
     if(createPartnersFile):
         file = open(PATHPARTNER, 'w')
         json.dump(listPartners, file, indent=4)
+        file.close()
+
+def saveFees(fees: dict, createFeesFile):
+    if(createFeesFile):
+        dictOfFees = {}
+        file = open(PATHFEES, 'w')
+
+        for dni in fees:
+            years = {}
+            for year in fees.get(dni):
+                years[year] =  fees.get(dni).get(year).parseToJSON()
+
+            dictOfFees[dni] = years
+
+        json.dump(dictOfFees, file, indent=4)
         file.close()
 
 #Se leen llos ficheros para cargar los datos ya existentes y se relacionan cada usuario con su socio

@@ -1,5 +1,8 @@
 from src.model.Partner import *
+from src.model.Fee import Fee
 from src.core import Persistence
+from datetime import date
+
 class Club:
 
     def __init__(self, name: str, cif: str, socialBase: str):
@@ -9,6 +12,7 @@ class Club:
         self.listOfUsers = None
         self.listOfEvents = None
         self.totalBalance = 0
+        self.listOfFees = None
 
     def init(self):
         self.listOfUsers = Persistence.init()
@@ -30,8 +34,24 @@ class Club:
         return True
 
     def savePartner(self, user: User):
+        d = date.today()
+        if(d.month >= 6): price = 8
+        else: price = 15
         self.listOfUsers[user.dni] =  user
+
+
+        fees = None
+
+        if(self.listOfFees!=None): fees = self.listOfFees[user.dni]
+        else: self.listOfFees = {}
+
+        if(fees != None): fees[d.year] = Fee(d.year, str(d), True, price, 0)
+        else: fees = { d.year: Fee(d.year, str(d), True, price, 0) }
+        
+        self.listOfFees[user.dni] = fees
+
         Persistence.saveData(self.listOfUsers, True, True, False)
+        Persistence.saveFees(self.listOfFees, True)
 
     def addFamily(self, dniOfPartner:str, dniOfFamily:str, type: str):
 
