@@ -42,15 +42,14 @@ class Club:
         self.listOfUsers[user.dni] =  user
 
 
-        fees = None
+        fees = self.listOfFees.get(str(d.year))
 
-        if(self.listOfFees!=None): fees = self.listOfFees.get(user.dni)
-        else: self.listOfFees = {}
+        if(self.listOfFees == None): self.listOfFees = {}
 
-        if(fees != None): fees[d.year] = Fee(d.year, str(d), True, price, 0)
-        else: fees = { d.year: Fee(d.year, str(d), True, price, 0) }
+        if(fees != None): fees[user.dni] = Fee(d.year, str(d), True, price, 0)
+        else: fees = { user.dni: Fee(d.year, str(d), True, price, 0) }
         
-        self.listOfFees[user.dni] = fees
+        self.listOfFees[str(d.year)] = fees
 
         Persistence.saveData(self.listOfUsers, True, True, False)
         Persistence.saveFees(self.listOfFees, True)
@@ -91,11 +90,14 @@ class Club:
         Persistence.saveFees(self.listOfFees, True)
 
     def updateDiscount(self, dni: str, discount: float):
-        partner = self.listOfFees.get(dni)
-        yearInfo = partner.get(str(date.today().year))
-        newDiscount = yearInfo.discount + discount
+        yearInfo = self.listOfFees.get(str(date.today().year))
+        partnerInfo = yearInfo.get(dni)
+        newDiscount = partnerInfo.discount + discount
 
-        if(newDiscount>=25): yearInfo.discount = 30
-        else: yearInfo.discount = newDiscount
+        if(newDiscount>=25): partnerInfo.discount = 30
+        else: partnerInfo.discount = newDiscount
 
-        self.listOfFees[dni][str(date.today().year)] = yearInfo 
+        self.listOfFees[str(date.today().year)][dni] = partnerInfo 
+
+    def updateFeesYearly(self):
+        pass

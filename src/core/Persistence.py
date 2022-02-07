@@ -17,7 +17,7 @@ def init():
     if(not(os.path.exists(PATHFEES))): createFeesFile = True
 
     if(createUsersFile or createPartnersFile): saveData({'00000000A' : User('admin', 'c/admin', '000000000', 'a@a.com', '00000000A', 'admin', True)}, createUsersFile, createPartnersFile, True)
-    if(createFeesFile): saveFees({ '00000000A': { date.today().year: Fee(date.today().year, str(date.today()), True, 0, 0) } }, True)
+    if(createFeesFile): saveFees({ date.today().year: {'00000000A' : Fee(date.today().year, str(date.today()), True, 0, 0) } }, True)
     return [_readDefault(), _readFees()]
 
 #Se comrpueba si existen los ficheros por defecto y si no existen se crean con lo datos por defecto
@@ -47,13 +47,14 @@ def saveFees(fees: dict, createFeesFile):
     if(createFeesFile):
         dictOfFees = {}
         file = open(PATHFEES, 'w')
+        
+        for year in fees:
+            dnis = {}
 
-        for dni in fees:
-            years = {}
-            for year in fees.get(dni):
-                years[year] =  fees.get(dni).get(year).parseToJSON()
+            for dni in fees.get(year):
+                dnis[dni] =  fees.get(year).get(dni).parseToJSON()
 
-            dictOfFees[dni] = years
+            dictOfFees[year] = dnis
 
         json.dump(dictOfFees, file, indent=4)
         file.close()
@@ -89,10 +90,10 @@ def _readFees():
     file = open(PATHFEES)
     fees = json.load(file)
     for i in fees:
-        years = {}
+        dnis = {}
         for y in fees[i]:
             info = fees[i].get(y)
-            years[y] = Fee(info['year'], info['lastPayment'], info['isPaid'], info['feePrice'], info['discount'])
-        dictFees[i] = years
+            dnis[y] = Fee(info['year'], info['lastPayment'], info['isPaid'], info['feePrice'], info['discount'])
+        dictFees[i] = dnis
     file.close()
     return dictFees

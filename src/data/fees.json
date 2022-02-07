@@ -1,29 +1,25 @@
 {
-    "00000000A": {
-        "2022": {
+    "2022": {
+        "00000000A": {
             "year": 2022,
             "lastPayment": "2022-02-07",
             "isPaid": true,
             "feePrice": 0,
             "discount": 10
-        }
-    },
-    "74583456J": {
-        "2022": {
+        },
+        "71373589N": {
             "year": 2022,
             "lastPayment": "2022-02-07",
             "isPaid": true,
             "feePrice": 15,
             "discount": 30
-        }
-    },
-    "71373589N": {
-        "2022": {
+        },
+        "75456784H": {
             "year": 2022,
             "lastPayment": "2022-02-07",
             "isPaid": true,
             "feePrice": 15,
-            "discount": 30
+            "discount": 15
         }
     }
 }
