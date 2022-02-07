@@ -74,6 +74,22 @@ class View:
                 printMessage(f'\n{fee[0]}:\n{fees.get(fee[0])}')
         else: printMessage(f'❗El año {year} no existe en los registros')
 
+    def requestDni(self):
+        while True:
+            printMessage(f'Introduce un dni: ')
+            print(">>> ", end = '')
+            dni = input()
+            
+            if(self.controller.existDni(dni)): return dni
+            else: printMessage('❗Introduce un dni valido') 
+
+    def showDataPay(self, data: list):
+        if( data != None ):
+            printMessage(f'Pago de Cuota de {data[0]}', 'cyan')
+            printMessage('============================', 'cyan')
+            printMessage(f'{data[1]}\n')
+        else: printMessage('❗La cuota de este año ya esta pagada\n')
+
     def addFamiliy(self, partnerDni: str, type: str):
         target = ''
         if(type=='padre'): target = 'parent'

@@ -31,9 +31,9 @@
             "discount": 10
         },
         "71373589N": {
-            "year": 2022,
+            "year": "2022",
             "lastPayment": "2022-02-07",
-            "isPaid": false,
+            "isPaid": true,
             "feePrice": 15,
             "discount": 30
         },

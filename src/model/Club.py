@@ -112,6 +112,23 @@ class Club:
     def searchFeesByYear(self, year: str):
         return [self.listOfFees.get(year), year]
 
+    def payFee(self, dni: str):
+        self.updateFeesYearly()
+        d = str(date.today().year)
+
+        fee = self.listOfFees.get(d).get(dni)
+
+        if(fee.isPaid): return None
+        else:
+            user = self.listOfUsers.get(dni)
+            fee.year = d
+            fee.isPaid = True
+            newData = self.listOfFees.get(d)
+            newData[dni] = fee
+            self.listOfFees[d] = newData
+            Persistence.saveFees(self.listOfFees, True)
+            return [ user.partner.fullName, fee]
+
     def updateFeesYearly(self):
         fees = self.listOfFees.get(str(date.today().year))
 
