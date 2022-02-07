@@ -113,4 +113,11 @@ class Club:
         return [self.listOfFees.get(year), year]
 
     def updateFeesYearly(self):
-        pass
+        fees = self.listOfFees.get(str(date.today().year))
+
+        if(fees != None): return True
+        else:
+            fees = self.listOfFees.get(str(date.today().year-1))
+            self.listOfFees[str(date.today().year)] = fees
+            Persistence.saveFees(self.listOfFees, True)
+            return False

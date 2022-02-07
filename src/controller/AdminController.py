@@ -32,7 +32,7 @@ class AdminController:
             elif( selection == '5' ): pass
             elif( selection == '6' ): pass
             elif( selection == '7' ): self.view.showFeesByYear(self.club.searchFeesByYear(self.view.feeByYear()))
-            elif( selection == '8' ): self.club.updateFeesYearly()
+            elif( selection == '8' ): self.view.warnUpdateFees(self.club.updateFeesYearly())
             elif( selection == '9' ): pass
             else: printMessage(f'❗No existe la opcion {selection}', 'red')
 

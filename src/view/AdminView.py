@@ -49,6 +49,9 @@ class View:
             else: printMessage('❗Introduce un tipo de familiar valido')
                 
 
+    def warnUpdateFees(self, wasUpdated: bool):
+        if(wasUpdated): printMessage('Ya esta actualizado el estado de las cuotas\n', 'cyan')
+        else: printMessage('Actualizado el estado de las cuotas\n', 'green')
 
     def feeByYear(self):
         year = ''
