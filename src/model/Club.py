@@ -67,6 +67,9 @@ class Club:
             if(familyPartner.family==None): familyPartner.family = [dniOfPartner]
             else: familyPartner.family.append(dniOfPartner)
 
+            self.updateDiscount(dniOfPartner, 15)
+            self.updateDiscount(dniOfFamily, 15)
+
         elif(type=='children'):
             if(partner.childrens==None): partner.childrens = [dniOfFamily]
             else: partner.childrens.append(dniOfFamily)
@@ -74,9 +77,25 @@ class Club:
             if(familyPartner.parents==None): familyPartner.parents = [dniOfPartner]
             else: familyPartner.family.append(dniOfPartner)
 
+            self.updateDiscount(dniOfPartner, 15)
+            self.updateDiscount(dniOfFamily, 15)
+
         elif(type=='couple'):
             partner.couple = dniOfFamily
             familyPartner.couple = dniOfPartner
 
-        Persistence.saveData(self.listOfUsers, True, True, False)
+            self.updateDiscount(dniOfPartner, 10)
+            self.updateDiscount(dniOfFamily, 10)
 
+        Persistence.saveData(self.listOfUsers, True, True, False)
+        Persistence.saveFees(self.listOfFees, True)
+
+    def updateDiscount(self, dni: str, discount: float):
+        partner = self.listOfFees.get(dni)
+        yearInfo = partner.get(str(date.today().year))
+        newDiscount = yearInfo.discount + discount
+
+        if(newDiscount>=25): yearInfo.discount = 30
+        else: yearInfo.discount = newDiscount
+
+        self.listOfFees[dni][str(date.today().year)] = yearInfo 

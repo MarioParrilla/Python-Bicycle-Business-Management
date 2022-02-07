@@ -7,7 +7,7 @@
         "bikes": null,
         "parents": null,
         "childrens": null,
-        "couple": null
+        "couple": "71373589N"
     },
     {
         "fullName": "Mario Parrilla",
@@ -16,8 +16,10 @@
         "email": "m@m.com",
         "bikes": null,
         "parents": null,
-        "childrens": null,
-        "couple": null
+        "childrens": [
+            "74583456J"
+        ],
+        "couple": "00000000A"
     },
     {
         "fullName": "Felix Valor",
@@ -25,7 +27,9 @@
         "phonenumber": "685434567",
         "email": "felixVaslor@gmail.com",
         "bikes": null,
-        "parents": null,
+        "parents": [
+            "71373589N"
+        ],
         "childrens": null,
         "couple": null
     }
