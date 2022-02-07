@@ -18,5 +18,15 @@
         "parents": null,
         "childrens": null,
         "couple": null
+    },
+    {
+        "fullName": "Felix Valor",
+        "address": "Castellanos",
+        "phonenumber": "685434567",
+        "email": "felixVaslor@gmail.com",
+        "bikes": null,
+        "parents": null,
+        "childrens": null,
+        "couple": null
     }
 ]

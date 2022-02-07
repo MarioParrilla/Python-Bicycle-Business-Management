@@ -141,5 +141,4 @@ class View:
                 break;
             else: printMessage('❗Introduce un valor valido')
         
-        print(f'{fullname}, {address}, {phonenumber}, {email}, {password}, {isAdmin}')
         self.controller.saveNewPartner(User(fullname, address, phonenumber, email, dni, password, isAdmin))

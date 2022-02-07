@@ -12,5 +12,12 @@
         "lastAccess": "00/00/00 - 00:00:00",
         "isAdmin": true,
         "paid": true
+    },
+    {
+        "dni": "74583456J",
+        "password": "fvalor",
+        "lastAccess": "00/00/00 - 00:00:00",
+        "isAdmin": false,
+        "paid": true
     }
 ]

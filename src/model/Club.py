@@ -15,7 +15,9 @@ class Club:
         self.listOfFees = None
 
     def init(self):
-        self.listOfUsers = Persistence.init()
+        data = Persistence.init()
+        self.listOfUsers = data[0]
+        self.listOfFees = data[1]
 
     def getUser(self, dni: str, password: str,  admin: bool = False):
         user = self.listOfUsers.get(dni)
@@ -42,7 +44,7 @@ class Club:
 
         fees = None
 
-        if(self.listOfFees!=None): fees = self.listOfFees[user.dni]
+        if(self.listOfFees!=None): fees = self.listOfFees.get(user.dni)
         else: self.listOfFees = {}
 
         if(fees != None): fees[d.year] = Fee(d.year, str(d), True, price, 0)
