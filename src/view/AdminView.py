@@ -2,7 +2,7 @@
 from src.view.View import printMessage, screen
 from src.core.Utils import checkRegex
 from src.model.Partner import User
-
+from datetime import date
 class View:
 
     def __init__(self, controller):
@@ -49,6 +49,27 @@ class View:
             else: printMessage('❗Introduce un tipo de familiar valido')
                 
 
+
+    def feeByYear(self):
+        year = ''
+        while True:
+            printMessage('Introduce el año a mostrar: ', 'yellow')
+            year = input()
+            if(len(year.strip()) == 0): 
+                year = str(date.today().year)
+                break;
+            elif(len(year.strip())>=4 and int(year)): break;
+            else: printMessage('❗Introduce un año valido')
+        return year
+
+    def showFeesByYear(self, data: list):
+        fees, year = data 
+        if(fees!=None):
+            printMessage(f'Cuotas Socios {year}', 'cyan')
+            printMessage('=====================', 'cyan')
+            for fee in sorted(fees.items(), key=lambda x: x[1].isPaid):
+                printMessage(f'\n{fee[0]}:\n{fees.get(fee[0])}')
+        else: printMessage(f'❗El año {year} no existe en los registros')
 
     def addFamiliy(self, partnerDni: str, type: str):
         target = ''

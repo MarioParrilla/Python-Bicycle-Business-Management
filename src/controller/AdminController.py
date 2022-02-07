@@ -6,7 +6,7 @@ class AdminController:
 
     def __init__(self, club: Club, dni: str, password: str):
         self.club = club
-        self.club.init()
+        self.club.init(dni)
         userChecked = self.club.getUser(dni, password, True)
         if(isinstance(userChecked, User)): 
             self.user = userChecked
@@ -22,14 +22,16 @@ class AdminController:
     def init(self):
         while self.run:
             selection = self.view.menu(self.club.name, self.user.dni, self.user.lastAccess)
-            if( selection   == '0' or selection == 'exit' ): self.run = False
+            if( selection   == '0' or selection == 'exit' ): 
+                self.club.closeSession()
+                self.run = False
             elif( selection == '1' ): self.view.showInfoPartners(self.club.listOfUsers)
             elif( selection == '2' ): self.view.requestNewPartner()
             elif( selection == '3' ): self.view.addFamilyToPartner()
             elif( selection == '4' ): pass
             elif( selection == '5' ): pass
             elif( selection == '6' ): pass
-            elif( selection == '7' ): pass
+            elif( selection == '7' ): self.view.showFeesByYear(self.club.searchFeesByYear(self.view.feeByYear()))
             elif( selection == '8' ): self.club.updateFeesYearly()
             elif( selection == '9' ): pass
             else: printMessage(f'❗No existe la opcion {selection}', 'red')

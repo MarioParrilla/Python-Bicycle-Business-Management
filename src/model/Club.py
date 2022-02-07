@@ -1,7 +1,7 @@
 from src.model.Partner import *
 from src.model.Fee import Fee
 from src.core import Persistence
-from datetime import date
+from datetime import date, datetime
 
 class Club:
 
@@ -14,10 +14,19 @@ class Club:
         self.totalBalance = 0
         self.listOfFees = None
 
-    def init(self):
+    def init(self, dniUserLogin: str):
         data = Persistence.init()
         self.listOfUsers = data[0]
         self.listOfFees = data[1]
+
+        user = self.listOfUsers.get(dniUserLogin)
+        user.lastAccess = str(datetime.today())
+        self.listOfUsers[dniUserLogin] = user
+
+    def closeSession(self):
+        Persistence.saveData(self.listOfUsers, True, True, False)
+        Persistence.saveFees(self.listOfFees, True)
+
 
     def getUser(self, dni: str, password: str,  admin: bool = False):
         user = self.listOfUsers.get(dni)
@@ -95,9 +104,13 @@ class Club:
         newDiscount = partnerInfo.discount + discount
 
         if(newDiscount>=25): partnerInfo.discount = 30
+        #Actulizar a sus familiares
         else: partnerInfo.discount = newDiscount
 
         self.listOfFees[str(date.today().year)][dni] = partnerInfo 
+
+    def searchFeesByYear(self, year: str):
+        return [self.listOfFees.get(year), year]
 
     def updateFeesYearly(self):
         pass
