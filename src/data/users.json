@@ -2,7 +2,7 @@
     {
         "dni": "00000000A",
         "password": "d033e22ae348aeb5660fc2140aec35850c4da997",
-        "lastAccess": "2022-02-07 23:15:08.274731",
+        "lastAccess": "2022-02-08 00:02:24.916334",
         "isAdmin": true,
         "paid": true
     },
@@ -16,6 +16,13 @@
     {
         "dni": "75456784H",
         "password": "fvalor",
+        "lastAccess": "00/00/00 - 00:00:00",
+        "isAdmin": false,
+        "paid": true
+    },
+    {
+        "dni": "71234564J",
+        "password": "prueba",
         "lastAccess": "00/00/00 - 00:00:00",
         "isAdmin": false,
         "paid": true

@@ -19,7 +19,7 @@
             "lastPayment": "2022-02-07",
             "isPaid": true,
             "feePrice": 15,
-            "discount": 15
+            "discount": 0
         }
     },
     "2022": {
@@ -28,7 +28,7 @@
             "lastPayment": "2022-02-07",
             "isPaid": true,
             "feePrice": 0,
-            "discount": 10
+            "discount": 30
         },
         "71373589N": {
             "year": "2022",
@@ -42,7 +42,14 @@
             "lastPayment": "2022-02-07",
             "isPaid": true,
             "feePrice": 15,
-            "discount": 15
+            "discount": 30
+        },
+        "71234564J": {
+            "year": 2022,
+            "lastPayment": "2022-02-08",
+            "isPaid": true,
+            "feePrice": 15,
+            "discount": 30
         }
     }
 }

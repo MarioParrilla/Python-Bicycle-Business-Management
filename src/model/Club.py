@@ -50,7 +50,6 @@ class Club:
         else: price = 15
         self.listOfUsers[user.dni] =  user
 
-
         fees = self.listOfFees.get(str(d.year))
 
         if(self.listOfFees == None): self.listOfFees = {}
@@ -75,8 +74,7 @@ class Club:
             if(familyPartner.family==None): familyPartner.family = [dniOfPartner]
             else: familyPartner.family.append(dniOfPartner)
 
-            self.updateDiscount(dniOfPartner, 15)
-            self.updateDiscount(dniOfFamily, 15)
+            self.updateDiscount(dniOfPartner, 15, True, False, False)
 
         elif(type=='children'):
             if(partner.childrens==None): partner.childrens = [dniOfFamily]
@@ -85,29 +83,58 @@ class Club:
             if(familyPartner.parents==None): familyPartner.parents = [dniOfPartner]
             else: familyPartner.family.append(dniOfPartner)
 
-            self.updateDiscount(dniOfPartner, 15)
-            self.updateDiscount(dniOfFamily, 15)
+            self.updateDiscount(dniOfPartner, 15, False, True, False)
 
         elif(type=='couple'):
             partner.couple = dniOfFamily
             familyPartner.couple = dniOfPartner
 
-            self.updateDiscount(dniOfPartner, 10)
-            self.updateDiscount(dniOfFamily, 10)
+            self.updateDiscount(dniOfPartner,  10, False, False, True)
 
         Persistence.saveData(self.listOfUsers, True, True, False)
         Persistence.saveFees(self.listOfFees, True)
 
-    def updateDiscount(self, dni: str, discount: float):
+    def updateDiscount(self, dni: str, discount: float, p: bool, ch: bool, c: bool):
+        user = self.listOfUsers.get(dni).partner
         yearInfo = self.listOfFees.get(str(date.today().year))
+
         partnerInfo = yearInfo.get(dni)
         newDiscount = partnerInfo.discount + discount
-
-        if(newDiscount>=25): partnerInfo.discount = 30
-        #Actulizar a sus familiares
+        if(newDiscount>=25): 
+            partnerInfo.discount = 30
+            c = True
+            ch = True
+            
         else: partnerInfo.discount = newDiscount
-
         self.listOfFees[str(date.today().year)][dni] = partnerInfo 
+
+        if(p):
+            if(user.parents!=None):
+                for i in user.parents:
+                    parent = yearInfo.get(i)
+                    parent.discount = parent.discount + discount
+                    if(newDiscount>=25): parent.discount = 30
+                    else: parent.discount = newDiscount
+                    self.listOfFees[str(date.today().year)][i] = parent 
+
+        if(ch):
+            if(user.childrens!=None):
+                for i in user.childrens:
+                    children = yearInfo.get(i)
+                    children.discount = children.discount + discount
+                    if(newDiscount>=25): children.discount = 30
+                    else: children.discount = newDiscount
+                    self.listOfFees[str(date.today().year)][i] = children
+
+        if(c):
+            if(user.couple!=None):
+                couple = yearInfo.get(user.couple)
+                couple.discount = couple.discount + discount
+                if(newDiscount>=25): couple.discount = 30
+                else: couple.discount = newDiscount
+                self.listOfFees[str(date.today().year)][user.couple] = couple
+
+        
 
     def searchFeesByYear(self, year: str):
         return [self.listOfFees.get(year), year]

@@ -17,7 +17,8 @@
         "bikes": null,
         "parents": null,
         "childrens": [
-            "75456784H"
+            "75456784H",
+            "71234564J"
         ],
         "couple": "00000000A"
     },
@@ -26,6 +27,18 @@
         "address": "Castellanos",
         "phonenumber": "675456789",
         "email": "felixv@mail.com",
+        "bikes": null,
+        "parents": [
+            "71373589N"
+        ],
+        "childrens": null,
+        "couple": null
+    },
+    {
+        "fullName": "Prueba 1",
+        "address": "Prueba",
+        "phonenumber": "678534567",
+        "email": "p@p.com",
         "bikes": null,
         "parents": [
             "71373589N"
