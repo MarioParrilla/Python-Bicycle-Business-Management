@@ -27,5 +27,5 @@ class UserController:
             elif( selection == '5' ): pass
             elif( selection == '6' ): pass
             elif( selection == '7' ): self.view.showFamily([self.user.partner.parents, self.user.partner.childrens, self.user.partner.couple])
-            elif( selection == '8' ): pass
+            elif( selection == '8' ): self.view.showHistory(self.club.getHistory(self.user.dni))
             else: printMessage(f'❗No existe la opcion {selection}', 'red')

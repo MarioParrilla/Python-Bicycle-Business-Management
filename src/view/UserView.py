@@ -37,3 +37,9 @@ class UserView:
         if(couple != None): 
             printMessage(f'Pareja', 'yellow')
             printMessage(f'{couple}\n')
+
+    def showHistory(self, data: list):
+        printMessage(f'Historico de Cuotas', 'cyan')
+        printMessage(f'===================', 'cyan')
+        for fee in data:
+            printMessage(f'{fee}\n')

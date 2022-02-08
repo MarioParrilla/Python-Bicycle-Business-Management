@@ -62,6 +62,16 @@ class Club:
         Persistence.saveData(self.listOfUsers, True, True, True)
         Persistence.saveFees(self.listOfFees, True)
 
+    def getHistory(self, dni: str):
+        history = []
+        for year in self.listOfFees:
+            for d in self.listOfFees.get(year):
+                if(dni==d):
+                    history.append(self.listOfFees.get(year).get(d))
+                    break
+
+        return history
+
     def addFamily(self, dniOfPartner:str, dniOfFamily:str, type: str):
 
         partner = self.listOfUsers.get(dniOfPartner).partner

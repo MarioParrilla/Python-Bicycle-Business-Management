@@ -18,4 +18,4 @@ class Fee:
         return jsonObject
 
     def __str__(self):
-        return f'Ultimo pago: {self.lastPayment}\nEstado: {self.isPaid}\nPrecio: {self.feePrice}\nDescuento: {self.discount}'
+        return f'Año: {self.year}\nUltimo pago: {self.lastPayment}\nEstado: {self.isPaid}\nPrecio: {self.feePrice}\nDescuento: {self.discount}'
