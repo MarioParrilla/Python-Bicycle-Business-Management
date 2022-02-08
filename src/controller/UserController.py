@@ -6,7 +6,7 @@ class UserController:
 
     def __init__(self, club: Club, dni: str, password: str):
         self.club = club
-        self.club.init()
+        self.club.init(dni)
         userChecked = club.getUser(dni, password)
         if(userChecked!=None): 
             self.user = userChecked
@@ -18,7 +18,7 @@ class UserController:
 
     def init(self):
         while self.run:
-            selection = self.view.menu(self.club.name, 'usuarioPrueba', '00/00/00 - 00:00:00')
+            selection = self.view.menu(self.club.name, self.user.dni, self.user.lastAccess)
             if( selection   == '0' or selection == 'exit' ): break
             elif( selection == '1' ): pass
             elif( selection == '2' ): pass
@@ -26,6 +26,6 @@ class UserController:
             elif( selection == '4' ): pass
             elif( selection == '5' ): pass
             elif( selection == '6' ): pass
-            elif( selection == '7' ): pass
+            elif( selection == '7' ): self.view.showFamily([self.user.partner.parents, self.user.partner.childrens, self.user.partner.couple])
             elif( selection == '8' ): pass
             else: printMessage(f'❗No existe la opcion {selection}', 'red')

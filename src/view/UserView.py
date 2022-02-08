@@ -20,3 +20,20 @@ class UserView:
         printMessage('0. Salir.');
         print(">>> ", end = '')
         return input()
+
+    def showFamily(self, data: list):
+        parents, children, couple = data
+
+        if(parents != None):
+            printMessage(f'Padres', 'yellow')
+            for p in parents:
+                printMessage(f'{p}\n')
+        
+        if(children != None): 
+            printMessage(f'Hijos', 'yellow')
+            for c in children:
+                printMessage(f'{c}\n')
+
+        if(couple != None): 
+            printMessage(f'Pareja', 'yellow')
+            printMessage(f'{couple}\n')

@@ -59,7 +59,7 @@ class Club:
         
         self.listOfFees[str(d.year)] = fees
 
-        Persistence.saveData(self.listOfUsers, True, True, False)
+        Persistence.saveData(self.listOfUsers, True, True, True)
         Persistence.saveFees(self.listOfFees, True)
 
     def addFamily(self, dniOfPartner:str, dniOfFamily:str, type: str):
