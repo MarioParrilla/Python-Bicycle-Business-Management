@@ -5,45 +5,49 @@
         "phonenumber": "000000000",
         "email": "a@a.com",
         "bikes": null,
-        "parents": null,
-        "childrens": null,
-        "couple": "71373589N"
+        "parents": [
+            "75358976H"
+        ],
+        "childrens": [
+            "71373589N"
+        ],
+        "couple": null
     },
     {
         "fullName": "Mario Parrilla Maroto",
         "address": "Madrilas",
         "phonenumber": "679708804",
-        "email": "mario@mai.com",
+        "email": "marioparrilla2@gmail.com",
+        "bikes": null,
+        "parents": [
+            "00000000A"
+        ],
+        "childrens": [
+            "75358976H"
+        ],
+        "couple": "75897546L"
+    },
+    {
+        "fullName": "Felix Valor Escribano",
+        "address": "Castellanos",
+        "phonenumber": "687965435",
+        "email": "felixvalor@gmail.com",
+        "bikes": null,
+        "parents": [
+            "71373589N",
+            "00000000A"
+        ],
+        "childrens": null,
+        "couple": null
+    },
+    {
+        "fullName": "Pepa Ruiz Martinez",
+        "address": "Buensuceso",
+        "phonenumber": "689567456",
+        "email": "pepa@gmail.com",
         "bikes": null,
         "parents": null,
-        "childrens": [
-            "75456784H",
-            "71234564J"
-        ],
-        "couple": "00000000A"
-    },
-    {
-        "fullName": "Felix Valor",
-        "address": "Castellanos",
-        "phonenumber": "675456789",
-        "email": "felixv@mail.com",
-        "bikes": null,
-        "parents": [
-            "71373589N"
-        ],
         "childrens": null,
-        "couple": null
-    },
-    {
-        "fullName": "Prueba 1",
-        "address": "Prueba",
-        "phonenumber": "678534567",
-        "email": "p@p.com",
-        "bikes": null,
-        "parents": [
-            "71373589N"
-        ],
-        "childrens": null,
-        "couple": null
+        "couple": "71373589N"
     }
 ]

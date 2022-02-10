@@ -24,7 +24,7 @@ def help():
 clear = lambda: os.system('cls' if os.name in ('nt', 'dos') else 'clear')
 
 
-def checkArguments(args: str):
+def checkArguments(args: list):
 
     if len(args) == 1: 
         error("Para iniciar sesion se necesita indicar un usuario y una constraseña.")

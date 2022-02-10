@@ -14,18 +14,19 @@ class Club:
         self.totalBalance = 0
         self.listOfFees = None
 
-    def init(self, dniUserLogin: str):
+    def init(self):
         data = Persistence.init()
         self.listOfUsers = data[0]
         self.listOfFees = data[1]
 
+
+    def closeSession(self, dniUserLogin: str):
+        Persistence.saveData(self.listOfUsers, True, True)
+        Persistence.saveFees(self.listOfFees, True)
         user = self.listOfUsers.get(dniUserLogin)
         user.lastAccess = str(datetime.today())
         self.listOfUsers[dniUserLogin] = user
-
-    def closeSession(self):
-        Persistence.saveData(self.listOfUsers, True, True, False)
-        Persistence.saveFees(self.listOfFees, True)
+        Persistence.saveData(self.listOfUsers, True, True)
 
 
     def getUser(self, dni: str, password: str,  admin: bool = False):
@@ -59,7 +60,7 @@ class Club:
         
         self.listOfFees[str(d.year)] = fees
 
-        Persistence.saveData(self.listOfUsers, True, True, True)
+        Persistence.saveData(self.listOfUsers, True, True)
         Persistence.saveFees(self.listOfFees, True)
 
     def getHistory(self, dni: str):
@@ -81,8 +82,8 @@ class Club:
             if(partner.parents==None): partner.parents = [dniOfFamily]
             else: partner.parents.append(dniOfFamily)
         
-            if(familyPartner.family==None): familyPartner.family = [dniOfPartner]
-            else: familyPartner.family.append(dniOfPartner)
+            if(familyPartner.parents==None): familyPartner.parents = [dniOfPartner]
+            else: familyPartner.parents.append(dniOfPartner)
 
             self.updateDiscount(dniOfPartner, 15, True, False, False)
 
@@ -101,7 +102,7 @@ class Club:
 
             self.updateDiscount(dniOfPartner,  10, False, False, True)
 
-        Persistence.saveData(self.listOfUsers, True, True, False)
+        Persistence.saveData(self.listOfUsers, True, True)
         Persistence.saveFees(self.listOfFees, True)
 
     def updateDiscount(self, dni: str, discount: float, p: bool, ch: bool, c: bool):

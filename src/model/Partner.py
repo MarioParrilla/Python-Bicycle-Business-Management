@@ -32,9 +32,10 @@ class Partner:
 
 class User:
 
-    def __init__(self, fullName: str, address: str, phonenumber: str, email: str, dni: str, password: str, isAdmin: bool):
+    def __init__(self, fullName: str, address: str, phonenumber: str, email: str, dni: str, password: str, isAdmin: bool, encrypt: bool):
         self.dni = dni
         self.password = password
+        if(encrypt): self.encryptPassword()
         self.lastAccess = '00/00/00 - 00:00:00'
         self.paid = True
         self.isAdmin = isAdmin

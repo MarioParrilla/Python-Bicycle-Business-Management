@@ -6,7 +6,7 @@ class AdminController:
 
     def __init__(self, club: Club, dni: str, password: str):
         self.club = club
-        self.club.init(dni)
+        self.club.init()
         userChecked = self.club.getUser(dni, password, True)
         if(isinstance(userChecked, User)): 
             self.user = userChecked
@@ -23,7 +23,7 @@ class AdminController:
         while self.run:
             selection = self.view.menu(self.club.name, self.user.dni, self.user.lastAccess)
             if( selection   == '0' or selection == 'exit' ): 
-                self.club.closeSession()
+                self.club.closeSession(self.user.dni)
                 self.run = False
             elif( selection == '1' ): self.view.showInfoPartners(self.club.listOfUsers)
             elif( selection == '2' ): self.view.requestNewPartner()
