@@ -24,3 +24,8 @@ def printMessage(msg: str, color: str = 'white'):
     elif(color.lower() == 'cyan'):   print(Fore.CYAN + msg + Fore.RESET)
     elif(color.lower() == 'green'):  print(Fore.GREEN + msg + Fore.RESET)
     elif(color.lower() == 'yellow'): print(Fore.YELLOW + msg + Fore.RESET)
+
+def pause(): 
+    print(Fore.YELLOW+"Puslar enter para continuar"+ Fore.RESET, end = '')
+    input()
+    print("\n")

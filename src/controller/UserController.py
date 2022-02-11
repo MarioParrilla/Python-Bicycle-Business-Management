@@ -6,7 +6,7 @@ class UserController:
 
     def __init__(self, club: Club, dni: str, password: str):
         self.club = club
-        self.club.init(dni)
+        self.club.init()
         userChecked = club.getUser(dni, password)
         if(userChecked!=None): 
             self.user = userChecked
@@ -19,7 +19,9 @@ class UserController:
     def init(self):
         while self.run:
             selection = self.view.menu(self.club.name, self.user.dni, self.user.lastAccess)
-            if( selection   == '0' or selection == 'exit' ): break
+            if( selection   == '0' or selection == 'exit' ): 
+                self.club.closeSession(self.user.dni)
+                self.run = False
             elif( selection == '1' ): pass
             elif( selection == '2' ): pass
             elif( selection == '3' ): pass

@@ -1,5 +1,6 @@
 import os, re
 from src.view.View import printMessage
+from datetime import date, datetime
 
 helpData = { 
     "-u, --user": 'Sirve para indicar el usuario para iniciar sesion. Debe ir antes de la contraseña.' ,
@@ -81,3 +82,12 @@ def checkRegex(patron: str, type: str):
     if( type == 'phonenumber' ): return bool(re.compile('(\+34|0034|34)?[ -]*(6|7)[ -]*([0-9][ -]*){8}').match(patron))
     elif( type == 'dni' ): return bool(re.compile('^[0-9]{8}[TRWAGMYFPDXBNJZSQVHLCKE]$').match(patron))
     elif( type == 'email' ): return bool(re.compile('[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}').match(patron))
+    elif( type == 'date' ): 
+        if(bool(re.compile('[\d]{1,2}/[\d]{1,2}/[\d]{4}').match(patron))):
+            try:
+                d = datetime.strptime(patron+" 00:00:00", '%d/%m/%Y %H:%M:%S')
+                return True
+            except: return False
+def getDate(patron):
+    d = datetime.strptime(patron+" 00:00:00", '%d/%m/%Y %H:%M:%S')
+    return d

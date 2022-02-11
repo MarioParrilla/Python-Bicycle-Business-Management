@@ -1,4 +1,4 @@
-from src.view.View import printMessage, screen
+from src.view.View import printMessage, screen, pause
 
 class UserView:
 
@@ -37,9 +37,11 @@ class UserView:
         if(couple != None): 
             printMessage(f'Pareja', 'yellow')
             printMessage(f'{couple}\n')
+        pause()
 
     def showHistory(self, data: list):
         printMessage(f'Historico de Cuotas', 'cyan')
         printMessage(f'===================', 'cyan')
         for fee in data:
             printMessage(f'{fee}\n')
+            pause()

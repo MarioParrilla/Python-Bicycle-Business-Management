@@ -1,7 +1,8 @@
 
-from src.view.View import printMessage, screen
-from src.core.Utils import checkRegex
+from src.view.View import printMessage, screen, pause
+from src.core.Utils import checkRegex, getDate
 from src.model.Partner import User
+from src.model.Event import Event
 from datetime import date
 class View:
 
@@ -25,11 +26,90 @@ class View:
         print(">>> ", end = '')
         return input()
 
+    def requestInfoEvent(self):
+        date = ''
+        organizer = ''
+        maxDate = ''
+        location = ''
+        province = ''
+        totalKM = 0
+        price = 0
+
+        while(True):
+            printMessage('Introduce una fecha para el evento:', 'yellow')
+            print(">>> ", end = '')
+            date = input()
+            if(checkRegex(date, 'date')): break;
+            else: printMessage('❗Introduce una fecha con el formato dia/mes/año')
+
+        while(True):
+            printMessage('Introduce el dni del organizador:', 'yellow')
+            print(">>> ", end = '')
+            organizer = input()
+            if(checkRegex(organizer, 'dni')): 
+                if(self.controller.existDni(organizer)): 
+                    #comprobar si tiene ya eventos ese dia
+                    break
+                else: printMessage('❗Introduce un dni que ya exista')
+            else: printMessage('❗Introduce un dni valido')
+
+        while(True):
+            printMessage('Introduce una fecha de inscripcion:', 'yellow')
+            print(">>> ", end = '')
+            maxDate = input()
+            if(checkRegex(maxDate, 'date')): 
+                if(getDate(date)>getDate(maxDate)): break
+                else: printMessage('❗Introduce una fecha de inscripcion que sea antes de la fecha del evento')
+            else: printMessage('❗Introduce una fecha con el formato dia/mes/año')
+
+        while(True):
+            printMessage('Introduce una localidad:', 'yellow')
+            print(">>> ", end = '')
+            location = input()
+            if(len(location.strip())>0): break;
+            else: printMessage('❗Introduce una localidad')
+
+        while(True):
+            printMessage('Introduce una provincia:', 'yellow')
+            print(">>> ", end = '')
+            province = input()
+            if(len(province.strip())>0): break;
+            else: printMessage('❗Introduce una provincia')
+
+        while(True):
+            printMessage('Introduce el recorrido total en kilometros:', 'yellow')
+            print(">>> ", end = '')
+            totalKM = input()
+            if(len(totalKM.strip())>0):
+                try:
+                    totalKM = float(totalKM.strip())
+                    break
+                except:
+                    printMessage('❗Introduce un numero correcto')
+
+            else: printMessage('❗Introduce un numero correcto')
+
+        while(True):
+            printMessage('Introduce el precio del evento:', 'yellow')
+            print(">>> ", end = '')
+            price = input()
+            if(len(price.strip())>0):
+                try:
+                    price = float(price.strip())
+                    break
+                except:
+                    printMessage('❗Introduce un precio correcto')
+
+            else: printMessage('❗Introduce un precio correcto')
+
+        return Event(date, maxDate, location, province, organizer, totalKM, price)
+
     def showInfoPartners(self, listOfUser: dict):
         printMessage('\nLista de Socios', 'cyan')
         printMessage('===============')
         for user in sorted(listOfUser.items(), key=lambda x: x[1].partner.fullName):
             printMessage(f'{listOfUser.get(user[0])}\n')
+            pause()
 
     def addFamilyToPartner(self):
         partnerDni = None
@@ -72,6 +152,7 @@ class View:
             printMessage('=====================', 'cyan')
             for fee in sorted(fees.items(), key=lambda x: x[1].isPaid):
                 printMessage(f'\n{fee[0]}:\n{fees.get(fee[0])}')
+                pause()
         else: printMessage(f'❗El año {year} no existe en los registros')
 
     def requestDni(self):
@@ -117,6 +198,16 @@ class View:
         password = ''
         isAdmin = ''
 
+        #Request DNI
+        while(True):
+            printMessage('Introduce un dni:', 'yellow')
+            print(">>> ", end = '')
+            dni = input()
+            if(checkRegex(dni, 'dni')): 
+                if(not(self.controller.existDni(dni))): break
+                else: printMessage('❗Introduce un dni que no exista ya')
+            else: printMessage('❗Introduce un dni valido')
+
         #Request fullName
         while(True):
             printMessage('Introduce un nombre para el socio (Nombre y Apellidos):', 'yellow')
@@ -148,16 +239,6 @@ class View:
             email = input()
             if(checkRegex(email, 'email')): break;
             else: printMessage('❗Introduce un email valido')
-
-        #Request DNI
-        while(True):
-            printMessage('Introduce un dni:', 'yellow')
-            print(">>> ", end = '')
-            dni = input()
-            if(checkRegex(dni, 'dni')): 
-                if(not(self.controller.existDni(dni))): break
-                else: printMessage('❗Introduce un dni que no exista ya')
-            else: printMessage('❗Introduce un dni valido')
 
         #Request Password
         while(True):
