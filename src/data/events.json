@@ -1,7 +1,51 @@
 {
+    "13/01/2022": [
+        {
+            "date": "13/01/2022",
+            "maxDate": "21/03/2022",
+            "location": "dasga",
+            "province": "hagdha",
+            "organizer": "00000000A",
+            "totalKM": 56.0,
+            "price": 45.0,
+            "eventPartners": null
+        },
+        {
+            "date": "13/01/2022",
+            "maxDate": "21/03/2022",
+            "location": "dasga",
+            "province": "hagdha",
+            "organizer": "71373589N",
+            "totalKM": 56.0,
+            "price": 45.0,
+            "eventPartners": null
+        }
+    ],
     "22/03/2022": [
         {
             "date": "22/03/2022",
+            "maxDate": "21/03/2022",
+            "location": "dasga",
+            "province": "hagdha",
+            "organizer": "00000000A",
+            "totalKM": 56.0,
+            "price": 45.0,
+            "eventPartners": null
+        },
+        {
+            "date": "22/03/2022",
+            "maxDate": "21/03/2022",
+            "location": "dasga",
+            "province": "hagdha",
+            "organizer": "71373589N",
+            "totalKM": 56.0,
+            "price": 45.0,
+            "eventPartners": null
+        }
+    ],
+    "26/03/2022": [
+        {
+            "date": "26/03/2022",
             "maxDate": "21/03/2022",
             "location": "dasga",
             "province": "hagdha",

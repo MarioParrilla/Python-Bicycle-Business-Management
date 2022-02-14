@@ -26,6 +26,13 @@ class View:
         print(">>> ", end = '')
         return input()
 
+    def showNearEvents(self, events: list):
+        printMessage('\nLista de Eventos Cernanos', 'cyan')
+        printMessage('============================')
+        for e in events:
+            printMessage(f'{e}')
+            pause()
+
     def requestInfoEvent(self):
         date = ''
         organizer = ''

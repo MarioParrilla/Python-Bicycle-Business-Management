@@ -71,11 +71,17 @@ class Club:
                 for e in event:
                     print(e)
 
-    def showNearEvents(self):
-        #return self.listOfEvents
+    #TODO: Esta funcion puede ser poco eficiente en la busquedaa REVISAR
+    def getNearEvents(self):
+        nearEvents = []
 
-        for dateItems in self.listOfEvents:
-            pass
+        now = date.today()
+
+        for dateItems in self.listOfEvents.values():
+            for e in dateItems:
+                if(e.date >= str(now)): nearEvents.append(e)
+
+        return nearEvents
 
     def saveEvent(self, event: Event):
         if(self.listOfEvents == None): self.listOfEvents = { event.date: [event] }

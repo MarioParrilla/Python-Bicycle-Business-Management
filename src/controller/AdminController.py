@@ -28,7 +28,7 @@ class AdminController:
             elif( selection == '1' ): self.view.showInfoPartners(self.club.listOfUsers)
             elif( selection == '2' ): self.view.requestNewPartner()
             elif( selection == '3' ): self.view.addFamilyToPartner()
-            elif( selection == '4' ): self.club.showNearEvents()
+            elif( selection == '4' ): self.view.showNearEvents(self.club.getNearEvents())
             elif( selection == '5' ): pass
             elif( selection == '6' ): self.club.saveEvent(self.view.requestInfoEvent())
             elif( selection == '7' ): self.view.showFeesByYear(self.club.searchFeesByYear(self.view.feeByYear()))
