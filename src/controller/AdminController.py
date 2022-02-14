@@ -28,9 +28,9 @@ class AdminController:
             elif( selection == '1' ): self.view.showInfoPartners(self.club.listOfUsers)
             elif( selection == '2' ): self.view.requestNewPartner()
             elif( selection == '3' ): self.view.addFamilyToPartner()
-            elif( selection == '4' ): pass
+            elif( selection == '4' ): self.club.showNearEvents()
             elif( selection == '5' ): pass
-            elif( selection == '6' ): self.view.requestInfoEvent()
+            elif( selection == '6' ): self.club.saveEvent(self.view.requestInfoEvent())
             elif( selection == '7' ): self.view.showFeesByYear(self.club.searchFeesByYear(self.view.feeByYear()))
             elif( selection == '8' ): self.view.warnUpdateFees(self.club.updateFeesYearly())
             elif( selection == '9' ): self.view.showDataPay(self.club.payFee(self.view.requestDni()))
@@ -44,3 +44,6 @@ class AdminController:
 
     def saveNewPartner(self, user: User):
         self.club.savePartner(user)
+
+    def checkEventsByUserDate(self, dni: str, date: str):
+        return self.club.checkEventsByUserDate(dni, date)

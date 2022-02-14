@@ -48,8 +48,8 @@ class View:
             organizer = input()
             if(checkRegex(organizer, 'dni')): 
                 if(self.controller.existDni(organizer)): 
-                    #comprobar si tiene ya eventos ese dia
-                    break
+                    if(self.controller.checkEventsByUserDate(organizer, date)): break
+                    else: printMessage('❗Introduce una fecha donde este usuario no tenga ya un evento')
                 else: printMessage('❗Introduce un dni que ya exista')
             else: printMessage('❗Introduce un dni valido')
 

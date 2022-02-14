@@ -1,5 +1,4 @@
 
-#SE PUEDEN REALIZAR DOS EVENTOS O MAS EN EL MISMO DIA SI EL ORGANIZADOR NO TIENE UN EVENTO ORGANIZADO ESE MISMO DIA
 class Event:
     def __init__(self, date: str, maxDate: str, location: str, province: str, organizer: str, totalKM: float, 
                 price: float):
@@ -11,3 +10,16 @@ class Event:
         self.totalKM = totalKM
         self.price = price
         self.eventPartners = None
+
+    def parseToJSON(self): 
+        jsonObject = {
+            'date': self.date,
+            'maxDate': self.maxDate,
+            'location': self.location,
+            'province': self.province,
+            'organizer': self.organizer,
+            'totalKM': self.totalKM,
+            'price': self.price,
+            'eventPartners': self.eventPartners,
+        }
+        return jsonObject

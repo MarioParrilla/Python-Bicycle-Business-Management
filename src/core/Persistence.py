@@ -1,4 +1,5 @@
 import json, os
+from src.model.Event import Event
 from src.model.Partner import *
 from src.model.Fee import Fee
 from datetime import date
@@ -6,6 +7,7 @@ from datetime import date
 PATHUSER = './src/data/users.json'
 PATHPARTNER = './src/data/partners.json'
 PATHFEES = './src/data/fees.json'
+PATHEVENTS = './src/data/events.json'
 
 def init():
     createUsersFile = False
@@ -18,7 +20,8 @@ def init():
 
     if(createUsersFile or createPartnersFile): saveData({'00000000A' : User('admin', 'c/admin', '000000000', 'a@a.com', '00000000A', 'admin', True, True)}, createUsersFile, createPartnersFile)
     if(createFeesFile): saveFees({ date.today().year: {'00000000A' : Fee(date.today().year, str(date.today()), True, 0, 0) } }, True)
-    return [_readDefault(), _readFees()]
+
+    return [_readDefault(), _readFees(), _readEvents()]
 
 #Se comrpueba si existen los ficheros por defecto y si no existen se crean con lo datos por defecto
 def saveData(listOfPartners: dict, createUsersFile: bool, createPartnersFile: bool): 
@@ -54,6 +57,25 @@ def saveFees(fees: dict, createFeesFile):
             dictOfFees[year] = dataFees
 
         json.dump(dictOfFees, file, indent=4)
+        file.close()
+
+def saveEvents(events: dict):
+
+    createEventsFile = False
+    if(not(os.path.exists(PATHEVENTS))): createEventsFile = True
+
+    if(createEventsFile):
+        dictOfEvents = {}
+        file = open(PATHEVENTS, 'w')
+        
+        for date, event in events.items():
+            dataEvents = []
+            for data in event:
+                dataEvents.append(data.parseToJSON())
+
+            dictOfEvents[date] = dataEvents
+
+        json.dump(dictOfEvents, file, indent=4)
         file.close()
 
 #Se leen llos ficheros para cargar los datos ya existentes y se relacionan cada usuario con su socio
@@ -97,3 +119,21 @@ def _readFees():
             dnis[y] = Fee(info['year'], info['lastPayment'], info['isPaid'], info['feePrice'], info['discount'])
         dictFees[i] = dnis
     return dictFees
+
+def _readEvents():
+    dictEvents = {}
+
+    file = open(PATHEVENTS)
+    events = json.load(file)
+    file.close()
+
+    for date, lstEvents in events.items():
+        listEvents = []
+        for e in lstEvents:
+            object = Event(e['date'], e['maxDate'], e['location'], e['province'], e['organizer'], e['totalKM'], e['price'])
+            object.eventPartners = e['eventPartners']
+            listEvents.append(object)
+
+        dictEvents[date] = listEvents
+
+    return dictEvents

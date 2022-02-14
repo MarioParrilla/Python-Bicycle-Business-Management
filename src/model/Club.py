@@ -1,5 +1,6 @@
 from src.model.Partner import *
 from src.model.Fee import Fee
+from src.model.Event import Event
 from src.core import Persistence
 from datetime import date, datetime
 
@@ -15,10 +16,7 @@ class Club:
         self.listOfFees = None
 
     def init(self):
-        data = Persistence.init()
-        self.listOfUsers = data[0]
-        self.listOfFees = data[1]
-
+        self.listOfUsers, self.listOfFees, self.listOfEvents = Persistence.init()
 
     def closeSession(self, dniUserLogin: str):
         Persistence.saveData(self.listOfUsers, True, True)
@@ -62,6 +60,28 @@ class Club:
 
         Persistence.saveData(self.listOfUsers, True, True)
         Persistence.saveFees(self.listOfFees, True)
+
+    def checkEventsByUserDate(self, dni: str, date: str):
+        if(self.listOfEvents == None): return True
+        else:
+            event = self.listOfEvents.get(date)
+
+            if(event == None): return True
+            else:
+                for e in event:
+                    print(e)
+
+    def showNearEvents(self):
+        #return self.listOfEvents
+
+        for dateItems in self.listOfEvents:
+            pass
+
+    def saveEvent(self, event: Event):
+        if(self.listOfEvents == None): self.listOfEvents = { event.date: [event] }
+        else: self.listOfEvents[event.date] = event
+
+        Persistence.saveEvents(self.listOfEvents)
 
     def getHistory(self, dni: str):
         history = []
