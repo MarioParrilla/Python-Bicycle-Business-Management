@@ -3,6 +3,7 @@ from src.model.Fee import Fee
 from src.model.Event import Event
 from src.core import Persistence
 from datetime import date, datetime
+from src.core.Utils import getDate
 
 class Club:
 
@@ -21,6 +22,7 @@ class Club:
     def closeSession(self, dniUserLogin: str):
         Persistence.saveData(self.listOfUsers, True, True)
         Persistence.saveFees(self.listOfFees, True)
+        Persistence.saveEvents(self.listOfEvents)
         user = self.listOfUsers.get(dniUserLogin)
         user.lastAccess = str(datetime.today())
         self.listOfUsers[dniUserLogin] = user
@@ -64,28 +66,35 @@ class Club:
     def checkEventsByUserDate(self, dni: str, date: str):
         if(self.listOfEvents == None): return True
         else:
-            event = self.listOfEvents.get(date)
+            eventsOfDate = self.listOfEvents.get(date)
 
-            if(event == None): return True
+            if(eventsOfDate == None): return True
             else:
-                for e in event:
-                    print(e)
+                for e in eventsOfDate:
+                    if(e.date == date and e.organizer == dni):
+                        return False
 
     #TODO: Esta funcion puede ser poco eficiente en la busquedaa REVISAR
     def getNearEvents(self):
         nearEvents = []
 
-        now = date.today()
-
-        for dateItems in self.listOfEvents.values():
-            for e in dateItems:
-                if(e.date >= str(now)): nearEvents.append(e)
+        now = datetime.today()
+        if(not(self.listOfEvents == None)):
+            for dateItems in self.listOfEvents.values():
+                for e in dateItems:
+                    d = getDate(e.date)
+                    if(d >= now): nearEvents.append(e)
 
         return nearEvents
 
     def saveEvent(self, event: Event):
         if(self.listOfEvents == None): self.listOfEvents = { event.date: [event] }
-        else: self.listOfEvents[event.date] = event
+        else:
+            l = self.listOfEvents.get(event.date)
+            if(l == None): self.listOfEvents[event.date] = [event]
+            else:
+                l.append(event)
+                self.listOfEvents[event.date] = l
 
         Persistence.saveEvents(self.listOfEvents)
 

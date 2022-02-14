@@ -30,7 +30,12 @@ class AdminController:
             elif( selection == '3' ): self.view.addFamilyToPartner()
             elif( selection == '4' ): self.view.showNearEvents(self.club.getNearEvents())
             elif( selection == '5' ): pass
-            elif( selection == '6' ): self.club.saveEvent(self.view.requestInfoEvent())
+            elif( selection == '6' ): 
+                data = None
+                while(True):
+                    data = self.view.requestInfoEvent()
+                    if(not(data == False)): break
+                self.club.saveEvent(data)
             elif( selection == '7' ): self.view.showFeesByYear(self.club.searchFeesByYear(self.view.feeByYear()))
             elif( selection == '8' ): self.view.warnUpdateFees(self.club.updateFeesYearly())
             elif( selection == '9' ): self.view.showDataPay(self.club.payFee(self.view.requestDni()))

@@ -60,23 +60,19 @@ def saveFees(fees: dict, createFeesFile):
         file.close()
 
 def saveEvents(events: dict):
+    dictOfEvents = {}
+    file = open(PATHEVENTS, 'w')
+    
+    for date, event in events.items():
+        dataEvents = []
+        for data in event:
+            dataEvents.append(data.parseToJSON())
 
-    createEventsFile = False
-    if(not(os.path.exists(PATHEVENTS))): createEventsFile = True
+        dictOfEvents[date] = dataEvents
 
-    if(createEventsFile):
-        dictOfEvents = {}
-        file = open(PATHEVENTS, 'w')
-        
-        for date, event in events.items():
-            dataEvents = []
-            for data in event:
-                dataEvents.append(data.parseToJSON())
+    json.dump(dictOfEvents, file, indent=4)
+    file.close()
 
-            dictOfEvents[date] = dataEvents
-
-        json.dump(dictOfEvents, file, indent=4)
-        file.close()
 
 #Se leen llos ficheros para cargar los datos ya existentes y se relacionan cada usuario con su socio
 def _readDefault():
@@ -135,5 +131,6 @@ def _readEvents():
             listEvents.append(object)
 
         dictEvents[date] = listEvents
+
 
     return dictEvents

@@ -57,6 +57,7 @@ class View:
                 if(self.controller.existDni(organizer)): 
                     if(self.controller.checkEventsByUserDate(organizer, date)): break
                     else: printMessage('❗Introduce una fecha donde este usuario no tenga ya un evento')
+                    return False
                 else: printMessage('❗Introduce un dni que ya exista')
             else: printMessage('❗Introduce un dni valido')
 

@@ -54,5 +54,17 @@
             "price": 45.0,
             "eventPartners": null
         }
+    ],
+    "01/06/2022": [
+        {
+            "date": "01/06/2022",
+            "maxDate": "25/05/2022",
+            "location": "Ciudad Real",
+            "province": "Ciudad Real",
+            "organizer": "00000000A",
+            "totalKM": 54.0,
+            "price": 34.6,
+            "eventPartners": null
+        }
     ]
 }
