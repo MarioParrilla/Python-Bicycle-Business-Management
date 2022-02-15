@@ -87,6 +87,14 @@ class Club:
 
         return nearEvents
 
+    def addUserToEvent(self, dni: str, event: Event):
+            for date, lstEvents in self.listOfEvents.items():
+                for e in lstEvents:
+                    if(e==event):
+                        if(e.eventPartners == None): e.eventPartners = [dni]
+                        else: e.eventPartners.append(dni)
+                        Persistence.saveEvents(self.listOfEvents)
+
     def saveEvent(self, event: Event):
         if(self.listOfEvents == None): self.listOfEvents = { event.date: [event] }
         else:

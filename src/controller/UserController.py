@@ -1,6 +1,7 @@
 from src.model import Club
 from src.view.View import printMessage
 from src.view.UserView import UserView
+from src.model.Event import Event
 
 class UserController:
 
@@ -14,7 +15,7 @@ class UserController:
         else:
             self.run = False
             printMessage('❗Error en el login: Usuario incorrecto o Contraseña incorrecta.', 'red')
-        self.view = UserView()
+        self.view = UserView(self)
 
     def init(self):
         while self.run:
@@ -23,7 +24,7 @@ class UserController:
                 self.club.closeSession(self.user.dni)
                 self.run = False
             elif( selection == '1' ): pass
-            elif( selection == '2' ): pass
+            elif( selection == '2' ): self.view.joinToEvents(self.user.dni, self.club.getNearEvents())
             elif( selection == '3' ): pass
             elif( selection == '4' ): pass
             elif( selection == '5' ): pass
@@ -31,3 +32,6 @@ class UserController:
             elif( selection == '7' ): self.view.showFamily([self.user.partner.parents, self.user.partner.childrens, self.user.partner.couple])
             elif( selection == '8' ): self.view.showHistory(self.club.getHistory(self.user.dni))
             else: printMessage(f'❗No existe la opcion {selection}', 'red')
+    
+    def addUserToEvent(self, dni: str, event: Event):
+        self.club.addUserToEvent(dni, event)

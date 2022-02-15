@@ -30,7 +30,10 @@
             "organizer": "00000000A",
             "totalKM": 56.0,
             "price": 45.0,
-            "eventPartners": null
+            "eventPartners": [
+                "00000000A",
+                "71373589N"
+            ]
         },
         {
             "date": "22/03/2022",
@@ -40,7 +43,9 @@
             "organizer": "71373589N",
             "totalKM": 56.0,
             "price": 45.0,
-            "eventPartners": null
+            "eventPartners": [
+                "71373589N"
+            ]
         }
     ],
     "26/03/2022": [

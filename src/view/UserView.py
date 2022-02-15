@@ -2,8 +2,8 @@ from src.view.View import printMessage, screen, pause
 
 class UserView:
 
-    def __init__(self):
-        pass
+    def __init__(self, controller):
+        self.controller = controller
 
     def menu(self, clubName, userName, lastAccess):
         screen(clubName, userName, lastAccess)
@@ -45,3 +45,20 @@ class UserView:
         for fee in data:
             printMessage(f'{fee}\n')
             pause()
+
+    def joinToEvents(self, dni: str, events: list):
+        printMessage('\nLista de Eventos Cernanos', 'cyan')
+        printMessage('============================')
+        if(len(events) == 0): printMessage('Ninguno')
+        else:
+            for e in events:
+                printMessage(f'{e}')
+                while(True):
+                    printMessage('¿Quieres apuntarte? [Si/No]:', 'yellow')
+                    print(">>> ", end = '')
+                    isAdmin = input()
+                    if(isAdmin.lower()=='si'):
+                        self.controller.addUserToEvent(dni, e)
+                        break;
+                    elif(isAdmin.lower()=='no'): break;
+                    else: printMessage('❗Introduce un valor valido')
