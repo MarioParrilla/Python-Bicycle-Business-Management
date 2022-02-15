@@ -23,7 +23,7 @@ class UserController:
             if( selection   == '0' or selection == 'exit' ): 
                 self.club.closeSession(self.user.dni)
                 self.run = False
-            elif( selection == '1' ): pass
+            elif( selection == '1' ): self.view.showEventsOfUser(self.club.getEventsOfUser(self.user.dni))
             elif( selection == '2' ): self.view.joinToEvents(self.user.dni, self.club.getNearEvents())
             elif( selection == '3' ): pass
             elif( selection == '4' ): pass

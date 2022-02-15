@@ -46,6 +46,15 @@ class UserView:
             printMessage(f'{fee}\n')
             pause()
 
+    def showEventsOfUser(self, events: list):
+        printMessage('\nLista de Eventos Inscritos', 'cyan')
+        printMessage('============================')
+        if(len(events) == 0): printMessage('Ninguno')
+        else:
+            for e in events:
+                printMessage(f'{e}')
+                pause()
+
     def joinToEvents(self, dni: str, events: list):
         printMessage('\nLista de Eventos Cernanos', 'cyan')
         printMessage('============================')

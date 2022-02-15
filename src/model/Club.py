@@ -74,6 +74,15 @@ class Club:
                     if(e.date == date and e.organizer == dni):
                         return False
 
+    def getEventsOfUser(self, dni: str):
+        data = []
+        for date, lstEvents in self.listOfEvents.items():
+            for e in lstEvents:
+                if(not(e.eventPartners == None)):
+                    if(not(e.eventPartners.index(dni) == None)): data.append(e)
+        
+        return data
+
     #TODO: Esta funcion puede ser poco eficiente en la busquedaa REVISAR
     def getNearEvents(self):
         nearEvents = []
