@@ -97,6 +97,15 @@ class Club:
                 self.listOfEvents[event.date] = l
 
         Persistence.saveEvents(self.listOfEvents)
+    
+    def getEventsByDate(self, date):
+        dateEvents = []
+
+        if(not(self.listOfEvents == None)):
+            for dateItems in self.listOfEvents.values():
+                for e in dateItems:
+                    if(e.date== date): dateEvents.append(e)
+        return dateEvents
 
     def getHistory(self, dni: str):
         history = []

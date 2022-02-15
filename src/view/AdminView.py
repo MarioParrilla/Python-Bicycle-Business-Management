@@ -26,12 +26,32 @@ class View:
         print(">>> ", end = '')
         return input()
 
+    def requestDateForEvent(self):
+        date = ''
+        while(True):
+            printMessage('Introduce una fecha :', 'yellow')
+            print(">>> ", end = '')
+            date = input()
+            if(checkRegex(date, 'date')): return date;
+            else: printMessage('❗Introduce una fecha con el formato dia/mes/año')
+
     def showNearEvents(self, events: list):
         printMessage('\nLista de Eventos Cernanos', 'cyan')
         printMessage('============================')
-        for e in events:
-            printMessage(f'{e}')
-            pause()
+        if(len(events) == 0): printMessage('Ninguno')
+        else:
+            for e in events:
+                printMessage(f'{e}')
+                pause()
+
+    def showEventsByDate(self, events: list):
+        printMessage('\nLista de Eventos Por Fecha', 'cyan')
+        printMessage('============================')
+        if(len(events) == 0): printMessage('Ninguno')
+        else:
+            for e in events:
+                printMessage(f'{e}')
+                pause()
 
     def requestInfoEvent(self):
         date = ''

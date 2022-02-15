@@ -29,7 +29,7 @@ class AdminController:
             elif( selection == '2' ): self.view.requestNewPartner()
             elif( selection == '3' ): self.view.addFamilyToPartner()
             elif( selection == '4' ): self.view.showNearEvents(self.club.getNearEvents())
-            elif( selection == '5' ): pass
+            elif( selection == '5' ): self.view.showEventsByDate(self.club.getEventsByDate(self.view.requestDateForEvent()))
             elif( selection == '6' ): 
                 data = None
                 while(True):
