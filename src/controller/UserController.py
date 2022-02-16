@@ -25,7 +25,7 @@ class UserController:
                 self.run = False
             elif( selection == '1' ): self.view.showEventsOfUser(self.club.getEventsOfUser(self.user.dni))
             elif( selection == '2' ): self.view.joinToEvents(self.user.dni, self.club.getNearEvents('maxDate'))
-            elif( selection == '3' ): pass
+            elif( selection == '3' ): self.view.showBikesOfUser(self.club.getUserBikes(self.user.dni))
             elif( selection == '4' ): pass
             elif( selection == '5' ): self.club.addBikeToUser(self.user, self.view.requestInfoBikes())
             elif( selection == '6' ): pass

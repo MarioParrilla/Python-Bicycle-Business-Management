@@ -91,6 +91,10 @@ class Club:
         self.listOfUsers[user.dni] = user
         Persistence.saveData(self.listOfUsers, True, True)
 
+    def getUserBikes(self, dni: str):
+        user = self.listOfUsers.get(dni)
+        return user.partner.bikes
+
     #TODO: Esta funcion puede ser poco eficiente en la busquedaa REVISAR
     def getNearEvents(self, type: str):
         nearEvents = []

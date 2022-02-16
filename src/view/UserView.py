@@ -22,6 +22,13 @@ class UserView:
         print(">>> ", end = '')
         return input()
 
+    def showBikesOfUser(self, bikes: list):
+        printMessage(f'Lista de bicicletas', 'cyan')
+        printMessage(f'===================', 'cyan')
+        for bike in bikes:
+            printMessage(f'{bike}\n')
+            pause()
+
     def requestInfoBikes(self):
         date = ''
         brandName = ''

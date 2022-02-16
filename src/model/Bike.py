@@ -13,6 +13,10 @@ class Bike:
         self.wheelSize = wheelSize
         self.maintenance = None
 
+
+    def __str__(self):
+        return  f"Fecha de Compra: {self.buyDate}\nMarca: {self.brandName}\nModelo: {self.model}\nPrecio: {self.price}\nColor: {self.color}\nPrecio: {self.price}\nTamaño del Cuadro: {self.bikeFrameSize}\nTamaño de rueda: {self.wheelSize}"
+
     def parseToJSON(self): 
         jsonObject = {
             'buyDate': self.buyDate,

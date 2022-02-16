@@ -29,6 +29,17 @@
                 "bikeFrameSize": 56.0,
                 "wheelSize": 12.0,
                 "maintenance": null
+            },
+            {
+                "buyDate": "05/08/2012",
+                "brandName": "Kies",
+                "model": "Rk",
+                "price": 506.23,
+                "typeBike": "Mountain",
+                "color": "Red",
+                "bikeFrameSize": 24.5,
+                "wheelSize": 15.0,
+                "maintenance": null
             }
         ],
         "parents": [
