@@ -1,5 +1,6 @@
 from src.view.View import printMessage, screen, pause
-
+from src.core.Utils import checkRegex, getDate
+from src.model.Bike import Bike
 class UserView:
 
     def __init__(self, controller):
@@ -20,6 +21,86 @@ class UserView:
         printMessage('0. Salir.');
         print(">>> ", end = '')
         return input()
+
+    def requestInfoBikes(self):
+        date = ''
+        brandName = ''
+        model = ''
+        price = ''
+        typeBike = ''
+        color = ''
+        bikeFrameSize = ''
+        wheelSize = ''
+
+        while(True):
+            printMessage('Introduce la fecha de compra de la bicicleta:', 'yellow')
+            print(">>> ", end = '')
+            date = input()
+            if(checkRegex(date, 'date')): break;
+            else: printMessage('❗Introduce una fecha con el formato dia/mes/año')
+
+        while(True):
+            printMessage('Introduce la marca de la bicicleta:', 'yellow')
+            print(">>> ", end = '')
+            brandName = input()
+            if(len(brandName.strip())>0): break;
+            else: printMessage('❗Introduce una  marca')
+
+        while(True):
+            printMessage('Introduce el modelo de bicicleta:', 'yellow')
+            print(">>> ", end = '')
+            model = input()
+            if(len(model.strip())>0): break;
+            else: printMessage('❗Introduce un modelo de bicicleta')
+        
+        while(True):
+            printMessage('Introduce el precio de la bicicleta:', 'yellow')
+            print(">>> ", end = '')
+            if(len(price.strip())>=0): 
+                try: 
+                    price = input()
+                    price = float(price)
+                    break;
+                except: printMessage('❗Introduce un precio valido')
+            else: printMessage('❗Introduce un precio valido')
+
+        while(True):
+            printMessage('Introduce el tipo de bicicleta:', 'yellow')
+            print(">>> ", end = '')
+            typeBike = input()
+            if(len(typeBike.strip())>0): break;
+            else: printMessage('❗Introduce un tipo de bicicleta')
+
+        while(True):
+            printMessage('Introduce el color de la bicicleta:', 'yellow')
+            print(">>> ", end = '')
+            color = input()
+            if(len(color.strip())>0): break;
+            else: printMessage('❗Introduce el color de la bicicleta')
+        
+        while(True):
+            printMessage('Introduce el tamaño del cuadro de la bicicleta:', 'yellow')
+            print(">>> ", end = '')
+            if(len(bikeFrameSize.strip())>=0):
+                try: 
+                    bikeFrameSize = input()
+                    bikeFrameSize = float(bikeFrameSize)
+                    break;
+                except:  printMessage('❗Introduce el tamaño del cuadro de la bicicleta valido')
+            else: printMessage('❗Introduce el tamaño del cuadro de la bicicleta valido')
+        
+        while(True):
+            printMessage('Introduce el tamaño de rueda de la bicicleta:', 'yellow')
+            print(">>> ", end = '')
+            if(len(wheelSize.strip())>=0):
+                try: 
+                    wheelSize = input()
+                    wheelSize = float(wheelSize)
+                    break;
+                except: printMessage('❗Introduce el tamaño de rueda de la bicicleta valido')
+            else: printMessage('❗Introduce el tamaño de rueda de la bicicleta valido')
+
+        return Bike(date, brandName, model, price, typeBike, color, bikeFrameSize, wheelSize)
 
     def showFamily(self, data: list):
         parents, children, couple = data

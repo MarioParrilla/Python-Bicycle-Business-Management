@@ -27,7 +27,7 @@ class UserController:
             elif( selection == '2' ): self.view.joinToEvents(self.user.dni, self.club.getNearEvents('maxDate'))
             elif( selection == '3' ): pass
             elif( selection == '4' ): pass
-            elif( selection == '5' ): pass
+            elif( selection == '5' ): self.view.requestInfoBikes()
             elif( selection == '6' ): pass
             elif( selection == '7' ): self.view.showFamily([self.user.partner.parents, self.user.partner.childrens, self.user.partner.couple])
             elif( selection == '8' ): self.view.showHistory(self.club.getHistory(self.user.dni))

@@ -1,6 +1,6 @@
 import hashlib
 
-from src.model.Bicyclette import Bicyclette
+from src.model.Bike import Bike
 from src.core.Utils import checkRegex
 
 
