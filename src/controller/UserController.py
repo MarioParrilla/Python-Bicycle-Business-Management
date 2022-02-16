@@ -24,7 +24,7 @@ class UserController:
                 self.club.closeSession(self.user.dni)
                 self.run = False
             elif( selection == '1' ): self.view.showEventsOfUser(self.club.getEventsOfUser(self.user.dni))
-            elif( selection == '2' ): self.view.joinToEvents(self.user.dni, self.club.getNearEvents())
+            elif( selection == '2' ): self.view.joinToEvents(self.user.dni, self.club.getNearEvents('maxDate'))
             elif( selection == '3' ): pass
             elif( selection == '4' ): pass
             elif( selection == '5' ): pass
@@ -34,4 +34,4 @@ class UserController:
             else: printMessage(f'❗No existe la opcion {selection}', 'red')
     
     def addUserToEvent(self, dni: str, event: Event):
-        self.club.addUserToEvent(dni, event)
+        return self.club.addUserToEvent(dni, event)

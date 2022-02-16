@@ -67,7 +67,8 @@ class UserView:
                     print(">>> ", end = '')
                     isAdmin = input()
                     if(isAdmin.lower()=='si'):
-                        self.controller.addUserToEvent(dni, e)
+                        if(self.controller.addUserToEvent(dni, e)): printMessage('Apuntado Correctamente en el evento', 'green')
+                        else: printMessage('Ya esta apuntado a este evento', 'red')
                         break;
                     elif(isAdmin.lower()=='no'): break;
                     else: printMessage('❗Introduce un valor valido')

@@ -84,25 +84,32 @@ class Club:
         return data
 
     #TODO: Esta funcion puede ser poco eficiente en la busquedaa REVISAR
-    def getNearEvents(self):
+    def getNearEvents(self, type: str):
         nearEvents = []
 
         now = datetime.today()
         if(not(self.listOfEvents == None)):
             for dateItems in self.listOfEvents.values():
                 for e in dateItems:
-                    d = getDate(e.date)
+                    d = getDate(getattr(e, type))
                     if(d >= now): nearEvents.append(e)
 
         return nearEvents
 
     def addUserToEvent(self, dni: str, event: Event):
-            for date, lstEvents in self.listOfEvents.items():
-                for e in lstEvents:
-                    if(e==event):
-                        if(e.eventPartners == None): e.eventPartners = [dni]
-                        else: e.eventPartners.append(dni)
-                        Persistence.saveEvents(self.listOfEvents)
+        
+        for date, lstEvents in self.listOfEvents.items():
+            for e in lstEvents:
+                if(e==event):
+                    if(e.eventPartners == None):
+                        e.eventPartners = [dni]
+                        return True
+                    else: 
+                        if(e.eventPartners.index(dni) == None):
+                            e.eventPartners.append(dni)
+                            Persistence.saveEvents(self.listOfEvents)
+                            return True
+                        else: return False
 
     def saveEvent(self, event: Event):
         if(self.listOfEvents == None): self.listOfEvents = { event.date: [event] }
