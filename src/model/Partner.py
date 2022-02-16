@@ -15,15 +15,20 @@ class Partner:
         self.childrens = None
         self.couple = None
 
-
-
     def parseToJSON(self): 
+
+        jsonBikes = []
+
+        if(not(self.bikes == None)):
+            for b in self.bikes:
+                jsonBikes.append(b.parseToJSON())
+
         jsonObject = {
             'fullName': self.fullName,
             'address': self.address,
             'phonenumber': self.phonenumber,
             'email': self.email,
-            'bikes': self.bikes,
+            'bikes': jsonBikes,
             'parents': self.parents,
             'childrens': self.childrens,
             'couple': self.couple,

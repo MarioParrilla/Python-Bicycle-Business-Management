@@ -4,7 +4,7 @@
         "address": "c/admin",
         "phonenumber": "000000000",
         "email": "a@a.com",
-        "bikes": null,
+        "bikes": [],
         "parents": [
             "75358976H"
         ],
@@ -18,7 +18,19 @@
         "address": "Madrilas",
         "phonenumber": "679708804",
         "email": "marioparrilla2@gmail.com",
-        "bikes": null,
+        "bikes": [
+            {
+                "buyDate": "21/03/2012",
+                "brandName": "Monty",
+                "model": "Bk",
+                "price": 234.34,
+                "typeBike": "Bk",
+                "color": "Black",
+                "bikeFrameSize": 56.0,
+                "wheelSize": 12.0,
+                "maintenance": null
+            }
+        ],
         "parents": [
             "00000000A"
         ],
@@ -32,7 +44,7 @@
         "address": "Castellanos",
         "phonenumber": "687965435",
         "email": "felixvalor@gmail.com",
-        "bikes": null,
+        "bikes": [],
         "parents": [
             "71373589N",
             "00000000A"
@@ -45,7 +57,7 @@
         "address": "Buensuceso",
         "phonenumber": "689567456",
         "email": "pepa@gmail.com",
-        "bikes": null,
+        "bikes": [],
         "parents": null,
         "childrens": null,
         "couple": "71373589N"

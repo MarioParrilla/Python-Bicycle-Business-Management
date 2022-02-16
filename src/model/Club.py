@@ -1,6 +1,7 @@
 from src.model.Partner import *
 from src.model.Fee import Fee
 from src.model.Event import Event
+from src.model.Bike import Bike
 from src.core import Persistence
 from datetime import date, datetime
 from src.core.Utils import getDate
@@ -82,6 +83,13 @@ class Club:
                     if(not(e.eventPartners.index(dni) == None)): data.append(e)
         
         return data
+
+    def addBikeToUser(self, user: User, bike: Bike):
+        listBikesUser = user.partner.bikes
+        if(listBikesUser == None): user.partner.bikes = [bike]
+        else: user.partner.bikes.append(bike)
+        self.listOfUsers[user.dni] = user
+        Persistence.saveData(self.listOfUsers, True, True)
 
     #TODO: Esta funcion puede ser poco eficiente en la busquedaa REVISAR
     def getNearEvents(self, type: str):

@@ -97,6 +97,12 @@ def _readDefault():
         object.partner.couple = partner['couple']
         object.lastAccess = user['lastAccess']
 
+        jsonBikes = []
+
+        for b in partner['bikes']:
+            jsonBikes.append(Bike(b['buyDate'], b['brandName'], b['model'], b['price'], b['typeBike'], b['color'], b['bikeFrameSize'], b['wheelSize']))
+
+        object.partner.bikes = jsonBikes
         dictUsers[object.dni] = object
         
     return dictUsers
