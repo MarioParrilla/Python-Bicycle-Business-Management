@@ -102,6 +102,13 @@ class Club:
         self.listOfUsers[dni] = user
         Persistence.saveData(self.listOfUsers, True, True)
 
+    def getMaintenances(self, dni: str):
+        maintenances = []
+        bikes = self.listOfUsers.get(dni).partner.bikes
+        if(not(bikes == None)): maintenances = bikes
+
+        return maintenances
+
     def getUserBikes(self, dni: str):
         user = self.listOfUsers.get(dni)
         return user.partner.bikes

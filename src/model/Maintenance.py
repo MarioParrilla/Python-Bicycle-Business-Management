@@ -8,6 +8,9 @@ class Maintenance:
         self.description = description
         self.category = category
 
+    def __str__(self):
+        return  f"Fecha: {self.date}\nPrecio: {self.price}\nDescripcion: {self.description}\nCategoria: {self.category}"
+
     def parseToJSON(self): 
             c = ''
             if(self.category == Category.WHEELS): c = 'wheels'

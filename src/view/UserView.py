@@ -31,6 +31,21 @@ class UserView:
             printMessage(f'{bike}\n')
             pause()
 
+    def showMaintenances(self, bikes: list):
+        print(bikes)
+        printMessage(f'Lista de Mantenimientos', 'cyan')
+        printMessage(f'=======================', 'cyan')
+        if(len(bikes)>0):
+            for bike in bikes:
+                printMessage(f'{bike.model}')
+                printMessage(f'=================', 'yellow')
+                if(not(bike.maintenance == None)):
+                    for m in bike.maintenance:
+                        printMessage(f'{m}')
+                else: printMessage('Ningun mantenimiento')
+                pause()
+        else: printMessage('Ninguna bicicleta en posesion')
+
     def addMaintenaceToBike(self, dni: str, bikes:list):
         printMessage('\nLista de Eventos Cernanos', 'cyan')
         printMessage('============================')
