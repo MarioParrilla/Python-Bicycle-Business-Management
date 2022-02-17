@@ -6,6 +6,6 @@ class Category(Enum):
     SEAT      = "Seat"
     BIKEFRAME = "BikeFrame"
     FRONT     = "Front"
-    REAR      = "Rear"
+    BACK      = "Back"
     OTHERS    = "Others"
 

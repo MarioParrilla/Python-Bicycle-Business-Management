@@ -1,6 +1,8 @@
 from src.view.View import printMessage, screen, pause
 from src.core.Utils import checkRegex, getDate
 from src.model.Bike import Bike
+from src.model.Maintenance import Maintenance
+from src.model.Category import Category
 class UserView:
 
     def __init__(self, controller):
@@ -28,6 +30,86 @@ class UserView:
         for bike in bikes:
             printMessage(f'{bike}\n')
             pause()
+
+    def addMaintenaceToBike(self, dni: str, bikes:list):
+        printMessage('\nLista de Eventos Cernanos', 'cyan')
+        printMessage('============================')
+        if(len(bikes) == 0): printMessage('Ninguna bicicleta en posesion')
+        else:
+            for b in bikes:
+                printMessage(f'{b}')
+                while(True):
+                    printMessage('¿Quieres hacerle un mantenimiento? [Si/No]:', 'yellow')
+                    print(">>> ", end = '')
+                    isAdmin = input()
+                    if(isAdmin.lower()=='si'):
+                        date = ''
+                        price = ''
+                        description = ''
+                        category = ''
+                                
+
+                        while(True):
+                            printMessage('Introduce la fecha del mantenimiento:', 'yellow')
+                            print(">>> ", end = '')
+                            date = input()
+                            if(checkRegex(date, 'date')): break;
+                            else: printMessage('❗Introduce una fecha con el formato dia/mes/año')
+
+                        while(True):
+                            printMessage('Introduce el precio del mantenimiento:', 'yellow')
+                            print(">>> ", end = '')
+                            if(len(price.strip())>=0): 
+                                try: 
+                                    price = input()
+                                    price = float(price)
+                                    break;
+                                except: printMessage('❗Introduce un precio valido')
+                            else: printMessage('❗Introduce un precio valido')
+
+
+                        while(True):
+                            printMessage('Introduce una description del mantenimiento:', 'yellow')
+                            print(">>> ", end = '')
+                            description = input()
+                            if(len(description.strip())>0): break;
+                            else: printMessage('❗Introduce una descripcion')
+
+                        while(True):
+                            printMessage('Introduce una categoria del mantenimiento: [Ruedas, Frenos, Asiento, Marco, Delantera, Trasera, Otros]', 'yellow')
+                            print(">>> ", end = '')
+                            category = input()
+                            if(len(category.strip())>0): 
+                                
+                                if(category.lower() == 'ruedas'): 
+                                    category = Category.WHEELS
+                                    break;
+                                elif(category.lower() == 'frenos'): 
+                                    category = Category.BRAKES
+                                    break;
+                                elif(category.lower() == 'asiento'): 
+                                    category = Category.SEAT
+                                    break;
+                                elif(category.lower() == 'cuadro'): 
+                                    category = Category.BIKEFRAME
+                                    break;
+                                elif(category.lower() == 'delantera'): 
+                                    category = Category.FRONT
+                                    break;
+                                elif(category.lower() == 'Back'): 
+                                    category = Category.BACK
+                                    break;
+                                elif(category.lower() == 'otros'): 
+                                    category = Category.OTHERS
+                                    break;
+                                else: printMessage('❗Introduce una categoria valida')
+                            else: printMessage('❗Introduce una categoria valida')
+
+                        self.controller.addMaintenaceToBike(dni, b, Maintenance(date, price, description, category))
+                        print()
+                        break;
+                    elif(isAdmin.lower()=='no'): break;
+                    else: printMessage('❗Introduce un valor valido')
 
     def requestInfoBikes(self):
         date = ''

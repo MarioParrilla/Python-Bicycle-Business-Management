@@ -2,6 +2,8 @@ import json, os
 from src.model.Event import Event
 from src.model.Partner import *
 from src.model.Fee import Fee
+from src.model.Maintenance import Maintenance
+from src.model.Category import Category
 from datetime import date
 
 PATHUSER = './src/data/users.json'
@@ -99,8 +101,31 @@ def _readDefault():
 
         jsonBikes = []
 
+
         for b in partner['bikes']:
-            jsonBikes.append(Bike(b['buyDate'], b['brandName'], b['model'], b['price'], b['typeBike'], b['color'], b['bikeFrameSize'], b['wheelSize']))
+            c = None
+            maintenance = None
+            if(not(b['maintenance'] == None)):
+                for m in b['maintenance']:
+                    maintenance = []
+                    
+                    if(m['category'] == 'wheels'): c = Category.WHEELS
+
+                    elif(m['category'] == 'brakes'): c = Category.BRAKES
+
+                    elif(m['category'] == 'seat'): c = Category.SEAT
+
+                    elif(m['category'] == 'bikeframe'): c = Category.BIKEFRAME
+
+                    elif(m['category'] == 'front'): c = Category.FRONT
+
+                    elif(m['category'] == 'back'): c = Category.BACK
+
+                    elif(m['category'] == 'others'): c = Category.OTHERS
+                    maintenance.append(Maintenance(m['date'], m['price'], m['description'], c))
+            bike = Bike(b['buyDate'], b['brandName'], b['model'], b['price'], b['typeBike'], b['color'], b['bikeFrameSize'], b['wheelSize'])
+            bike.maintenance = maintenance
+            jsonBikes.append(bike)
 
         object.partner.bikes = jsonBikes
         dictUsers[object.dni] = object

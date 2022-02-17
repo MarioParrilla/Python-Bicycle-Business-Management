@@ -28,7 +28,14 @@
                 "color": "Black",
                 "bikeFrameSize": 56.0,
                 "wheelSize": 12.0,
-                "maintenance": null
+                "maintenance": [
+                    {
+                        "date": "23/05/2018",
+                        "price": 102.5,
+                        "description": "Revision de ruedas",
+                        "category": "wheels"
+                    }
+                ]
             },
             {
                 "buyDate": "05/08/2012",

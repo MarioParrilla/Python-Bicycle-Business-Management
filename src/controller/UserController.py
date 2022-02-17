@@ -2,6 +2,8 @@ from src.model import Club
 from src.view.View import printMessage
 from src.view.UserView import UserView
 from src.model.Event import Event
+from src.model.Bike import Bike
+from src.model.Maintenance import Maintenance
 
 class UserController:
 
@@ -28,10 +30,15 @@ class UserController:
             elif( selection == '3' ): self.view.showBikesOfUser(self.club.getUserBikes(self.user.dni))
             elif( selection == '4' ): pass
             elif( selection == '5' ): self.club.addBikeToUser(self.user, self.view.requestInfoBikes())
-            elif( selection == '6' ): pass
+            elif( selection == '6' ): self.view.addMaintenaceToBike(self.user.dni, self.club.getUserBikes(self.user.dni))
             elif( selection == '7' ): self.view.showFamily([self.user.partner.parents, self.user.partner.childrens, self.user.partner.couple])
             elif( selection == '8' ): self.view.showHistory(self.club.getHistory(self.user.dni))
             else: printMessage(f'❗No existe la opcion {selection}', 'red')
     
     def addUserToEvent(self, dni: str, event: Event):
         return self.club.addUserToEvent(dni, event)
+    
+    def addMaintenaceToBike(self, dni: str, bike: Bike, maintenance: Maintenance):
+        self.club.addMaintenaceToBike(dni, bike, maintenance)
+
+    

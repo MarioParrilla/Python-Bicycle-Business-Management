@@ -18,6 +18,12 @@ class Bike:
         return  f"Fecha de Compra: {self.buyDate}\nMarca: {self.brandName}\nModelo: {self.model}\nPrecio: {self.price}\nColor: {self.color}\nPrecio: {self.price}\nTamaño del Cuadro: {self.bikeFrameSize}\nTamaño de rueda: {self.wheelSize}"
 
     def parseToJSON(self): 
+        
+        m = None
+        if(not(self.maintenance == None)):
+            m = []
+            for i in self.maintenance:
+                m.append(i.parseToJSON())
         jsonObject = {
             'buyDate': self.buyDate,
             'brandName': self.brandName,
@@ -27,6 +33,6 @@ class Bike:
             'color': self.color,
             'bikeFrameSize': self.bikeFrameSize,
             'wheelSize': self.wheelSize,
-            'maintenance': self.maintenance
+            'maintenance': m
         }
         return jsonObject

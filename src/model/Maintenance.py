@@ -1,4 +1,4 @@
-from model import Category
+from src.model.Category import Category
 
 class Maintenance:
 
@@ -7,3 +7,27 @@ class Maintenance:
         self.price = price
         self.description = description
         self.category = category
+
+    def parseToJSON(self): 
+            c = ''
+            if(self.category == Category.WHEELS): c = 'wheels'
+
+            elif(self.category == Category.BRAKES): c = 'brakes'
+
+            elif(self.category == Category.SEAT): c = 'seat'
+
+            elif(self.category == Category.BIKEFRAME): c = 'bikeframe'
+
+            elif(self.category == Category.FRONT): c = 'front'
+
+            elif(self.category == Category.BACK): c = 'back'
+
+            elif(self.category == Category.OTHERS): c = 'others'
+
+            jsonObject = {
+                'date': self.date,
+                'price': self.price,
+                'description': self.description,
+                'category': c,
+            }
+            return jsonObject

@@ -2,6 +2,7 @@ from src.model.Partner import *
 from src.model.Fee import Fee
 from src.model.Event import Event
 from src.model.Bike import Bike
+from src.model.Maintenance import Maintenance
 from src.core import Persistence
 from datetime import date, datetime
 from src.core.Utils import getDate
@@ -89,6 +90,16 @@ class Club:
         if(listBikesUser == None): user.partner.bikes = [bike]
         else: user.partner.bikes.append(bike)
         self.listOfUsers[user.dni] = user
+        Persistence.saveData(self.listOfUsers, True, True)
+
+    def addMaintenaceToBike(self, dni: str, bike: Bike, maintenance: Maintenance):
+        user = self.listOfUsers.get(dni)
+        indexOfBike = user.partner.bikes.index(bike)
+        b = user.partner.bikes[indexOfBike]
+        if(b.maintenance==None): b.maintenance = [maintenance]
+        else: b.maintenance.append(maintenance)
+        user.partner.bikes[indexOfBike] = b
+        self.listOfUsers[dni] = user
         Persistence.saveData(self.listOfUsers, True, True)
 
     def getUserBikes(self, dni: str):
