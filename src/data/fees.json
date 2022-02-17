@@ -1,60 +1,60 @@
 {
     "2021": {
         "00000000A": {
-            "year": 2021,
+            "year": "2022",
             "lastPayment": "2021-02-10",
-            "isPaid": true,
+            "isPaid": false,
             "feePrice": 0,
             "discount": 30
         },
         "71373589N": {
-            "year": 2021,
+            "year": "2022",
             "lastPayment": "2021-02-10",
-            "isPaid": true,
+            "isPaid": false,
             "feePrice": 15,
             "discount": 30
         },
         "75358976H": {
-            "year": 2021,
+            "year": "2022",
             "lastPayment": "2021-02-10",
-            "isPaid": true,
+            "isPaid": false,
             "feePrice": 15,
             "discount": 30
         },
         "75897546L": {
-            "year": 2021,
+            "year": "2022",
             "lastPayment": "2021-02-10",
-            "isPaid": true,
+            "isPaid": false,
             "feePrice": 15,
             "discount": 30
         }
     },
     "2022": {
         "00000000A": {
-            "year": 2022,
-            "lastPayment": "2022-02-10",
-            "isPaid": true,
+            "year": "2022",
+            "lastPayment": "2021-02-10",
+            "isPaid": false,
             "feePrice": 0,
             "discount": 30
         },
         "71373589N": {
-            "year": 2022,
-            "lastPayment": "2022-02-10",
-            "isPaid": true,
+            "year": "2022",
+            "lastPayment": "2021-02-10",
+            "isPaid": false,
             "feePrice": 15,
             "discount": 30
         },
         "75358976H": {
-            "year": 2022,
-            "lastPayment": "2022-02-10",
-            "isPaid": true,
+            "year": "2022",
+            "lastPayment": "2021-02-10",
+            "isPaid": false,
             "feePrice": 15,
             "discount": 30
         },
         "75897546L": {
-            "year": 2022,
-            "lastPayment": "2022-02-10",
-            "isPaid": true,
+            "year": "2022",
+            "lastPayment": "2021-02-10",
+            "isPaid": false,
             "feePrice": 15,
             "discount": 30
         }

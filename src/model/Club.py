@@ -253,6 +253,12 @@ class Club:
         if(fees != None): return True
         else:
             fees = self.listOfFees.get(str(date.today().year-1))
+
+            for dni, fee in fees.items():
+                fee.isPaid = False
+                fee.year = str(date.today().year)
+                fees[dni] = fee
+
             self.listOfFees[str(date.today().year)] = fees
             Persistence.saveFees(self.listOfFees, True)
             return False
