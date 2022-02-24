@@ -179,7 +179,7 @@ class View:
             printMessage(f'Cuotas Socios {year}', 'cyan')
             printMessage('=====================', 'cyan')
             for fee in sorted(fees.items(), key=lambda x: x[1].isPaid):
-                printMessage(f'\n{fee[0]}:\n{fees.get(fee[0])}')
+                printMessage(f'{fee[0]}:\n{fees.get(fee[0])}\n Precio a pagar: {fees.get(fee[0]).feePrice - ((fees.get(fee[0]).feePrice*fees.get(fee[0]).discount)/100)}')
                 pause()
         else: printMessage(f'❗El año {year} no existe en los registros')
 
@@ -196,7 +196,8 @@ class View:
         if( data != None ):
             printMessage(f'Pago de Cuota de {data[0]}', 'cyan')
             printMessage('============================', 'cyan')
-            printMessage(f'{data[1]}\n')
+            printMessage(f'{data[1]}')
+            printMessage(f'Precio a pagar: {data[1].feePrice - ((data[1].feePrice*data[1].discount)/100)}\n', 'green')
         else: printMessage('❗La cuota de este año ya esta pagada\n')
 
     def addFamiliy(self, partnerDni: str, type: str):
