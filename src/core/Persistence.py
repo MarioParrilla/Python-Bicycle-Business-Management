@@ -15,6 +15,7 @@ def init():
     createUsersFile = False
     createPartnersFile = False 
     createFeesFile = False 
+    events = None
 
     if(not(os.path.exists(PATHUSER))): createUsersFile = True
     if(not(os.path.exists(PATHPARTNER))): createPartnersFile = True
@@ -22,8 +23,8 @@ def init():
 
     if(createUsersFile or createPartnersFile): saveData({'00000000A' : User('admin', 'c/admin', '000000000', 'a@a.com', '00000000A', 'admin', True, True)}, createUsersFile, createPartnersFile)
     if(createFeesFile): saveFees({ date.today().year: {'00000000A' : Fee(date.today().year, str(date.today()), True, 0, 0) } }, True)
-
-    return [_readDefault(), _readFees(), _readEvents()]
+    if(os.path.exists(PATHEVENTS)): events = _readEvents()
+    return [_readDefault(), _readFees(), events]
 
 #Se comrpueba si existen los ficheros por defecto y si no existen se crean con lo datos por defecto
 def saveData(listOfPartners: dict, createUsersFile: bool, createPartnersFile: bool): 
@@ -62,19 +63,19 @@ def saveFees(fees: dict, createFeesFile):
         file.close()
 
 def saveEvents(events: dict):
-    dictOfEvents = {}
-    file = open(PATHEVENTS, 'w')
-    
-    for date, event in events.items():
-        dataEvents = []
-        for data in event:
-            dataEvents.append(data.parseToJSON())
+    if(events!=None):
+        dictOfEvents = {}
+        file = open(PATHEVENTS, 'w')
+        
+        for date, event in events.items():
+            dataEvents = []
+            for data in event:
+                dataEvents.append(data.parseToJSON())
 
-        dictOfEvents[date] = dataEvents
+            dictOfEvents[date] = dataEvents
 
-    json.dump(dictOfEvents, file, indent=4)
-    file.close()
-
+        json.dump(dictOfEvents, file, indent=4)
+        file.close()
 
 #Se leen llos ficheros para cargar los datos ya existentes y se relacionan cada usuario con su socio
 def _readDefault():

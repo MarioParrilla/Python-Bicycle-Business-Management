@@ -45,7 +45,7 @@ class AdminController:
         return self.club.exists(dni)
 
     def addFamiliy(self, dniOfPartner:str, dniOfFamily:str, type: str):
-        self.club.addFamily(dniOfPartner, dniOfFamily, type)
+        return self.club.addFamily(dniOfPartner, dniOfFamily, type)
 
     def saveNewPartner(self, user: User):
         self.club.savePartner(user)

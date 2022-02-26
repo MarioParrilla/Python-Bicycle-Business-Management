@@ -212,8 +212,11 @@ class View:
             
             if(partnerDni!=familyDni):
                 if(self.controller.existDni(familyDni)): 
-                    self.controller.addFamiliy(partnerDni, familyDni, target)
-                    return False
+                    data = self.controller.addFamiliy(partnerDni, familyDni, target)
+                    if(data == None):
+                        printMessage('Familiar agregado correctamente') 
+                        return False
+                    else: printMessage(f'❗{data}', 'red') 
                 else: printMessage('❗Introduce un dni valido') 
             else: printMessage('❗Introduce un dni que no sea el mismo que el socio objetivo') 
 

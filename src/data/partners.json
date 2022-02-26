@@ -5,79 +5,52 @@
         "phonenumber": "000000000",
         "email": "a@a.com",
         "bikes": [],
-        "parents": [
-            "75358976H"
-        ],
-        "childrens": [
-            "71373589N"
-        ],
-        "couple": null
-    },
-    {
-        "fullName": "Mario Parrilla Maroto",
-        "address": "Madrilas",
-        "phonenumber": "679708804",
-        "email": "marioparrilla2@gmail.com",
-        "bikes": [
-            {
-                "buyDate": "21/03/2012",
-                "brandName": "Monty",
-                "model": "Bk",
-                "price": 234.34,
-                "typeBike": "Bk",
-                "color": "Black",
-                "bikeFrameSize": 56.0,
-                "wheelSize": 12.0,
-                "maintenance": [
-                    {
-                        "date": "23/05/2018",
-                        "price": 102.5,
-                        "description": "Revision de ruedas",
-                        "category": "wheels"
-                    }
-                ]
-            },
-            {
-                "buyDate": "05/08/2012",
-                "brandName": "Kies",
-                "model": "Rk",
-                "price": 506.23,
-                "typeBike": "Mountain",
-                "color": "Red",
-                "bikeFrameSize": 24.5,
-                "wheelSize": 15.0,
-                "maintenance": null
-            }
-        ],
-        "parents": [
-            "00000000A"
-        ],
-        "childrens": [
-            "75358976H"
-        ],
-        "couple": "75897546L"
-    },
-    {
-        "fullName": "Felix Valor Escribano",
-        "address": "Castellanos",
-        "phonenumber": "687965435",
-        "email": "felixvalor@gmail.com",
-        "bikes": [],
-        "parents": [
-            "71373589N",
-            "00000000A"
-        ],
+        "parents": null,
         "childrens": null,
         "couple": null
     },
     {
-        "fullName": "Pepa Ruiz Martinez",
-        "address": "Buensuceso",
-        "phonenumber": "689567456",
-        "email": "pepa@gmail.com",
+        "fullName": "Pepe Martinez",
+        "address": "pues tu puta madre",
+        "phonenumber": "623456789",
+        "email": "jsdahjdsjsd@jdjd.com",
         "bikes": [],
         "parents": null,
         "childrens": null,
-        "couple": "71373589N"
+        "couple": "09876543K"
+    },
+    {
+        "fullName": "Pepa Montero",
+        "address": "saasas",
+        "phonenumber": "789654321",
+        "email": "hdhd@gmail.com",
+        "bikes": [],
+        "parents": [
+            "71373578G"
+        ],
+        "childrens": null,
+        "couple": "12345678J"
+    },
+    {
+        "fullName": "juanito",
+        "address": "jkasjkas",
+        "phonenumber": "723456789",
+        "email": "hdhdhdh@ddd.es",
+        "bikes": [],
+        "parents": null,
+        "childrens": null,
+        "couple": null
+    },
+    {
+        "fullName": "Pablito Palotes",
+        "address": "Cruz",
+        "phonenumber": "675432345",
+        "email": "pablito@gmail.com",
+        "bikes": [],
+        "parents": null,
+        "childrens": [
+            "09876543K"
+        ],
+        "couple": null
     }
 ]

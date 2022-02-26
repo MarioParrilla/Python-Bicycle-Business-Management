@@ -173,35 +173,127 @@ class Club:
 
     def addFamily(self, dniOfPartner:str, dniOfFamily:str, type: str):
 
+        success = False
+        msg = ""
+
         partner = self.listOfUsers.get(dniOfPartner).partner
         familyPartner = self.listOfUsers.get(dniOfFamily).partner
 
         if(type=='parent'):
-            if(partner.parents==None): partner.parents = [dniOfFamily]
-            else: partner.parents.append(dniOfFamily)
+            cont = True
+            if(partner.parents==None):
+                if(partner.childrens!=None):
+                    for c in partner.childrens:
+                        if(c==dniOfFamily):
+                            cont = False
+                            break
+                
+                if(partner.couple!=None): 
+                    if(partner.couple==dniOfFamily): cont = False
+
+            elif(len(partner.parents)==2): cont = False
+            else:
+                for p in partner.parents:
+                    if(p==dniOfFamily):
+                        cont = False
+                        break
+                
+                if(partner.childrens!=None):
+                    for c in partner.childrens:
+                        if(c==dniOfFamily):
+                            cont = False
+                            break
+                
+                if(partner.couple!=None): 
+                    if(partner.couple==dniOfFamily): cont = False
+
+            if(cont):
+                if(partner.parents==None): partner.parents = [dniOfFamily]
+                else: partner.parents.append(dniOfFamily)
+            
+                if(familyPartner.childrens==None): familyPartner.childrens = [dniOfPartner]
+                else: familyPartner.childrens.append(dniOfPartner)
+
+                self.updateDiscount(dniOfPartner, 15, True, False, False)
+                success = True
+            else:
+                msg = f"No se ha permitido añadir al socio {dniOfFamily} a los padres del socio {dniOfPartner}"
         
-            if(familyPartner.parents==None): familyPartner.parents = [dniOfPartner]
-            else: familyPartner.parents.append(dniOfPartner)
-
-            self.updateDiscount(dniOfPartner, 15, True, False, False)
-
         elif(type=='children'):
-            if(partner.childrens==None): partner.childrens = [dniOfFamily]
-            else: partner.childrens.append(dniOfFamily)
+            cont = True
+            if(partner.childrens==None):
+                if(partner.parents!=None):
+                    for p in partner.parents:
+                        if(p==dniOfFamily):
+                            cont = False
+                            break
+                
+                if(partner.couple!=None): 
+                    if(partner.couple==dniOfFamily): cont = False
+            else:
+                if(partner.parents!=None):
+                    for p in partner.parents:
+                        if(p==dniOfFamily):
+                            cont = False
+                            break
+                
+                for c in partner.childrens:
+                    if(p==dniOfFamily):
+                        cont = False
+                        break
+                
+                if(partner.couple!=None): 
+                    if(partner.couple==dniOfFamily): cont = False
 
-            if(familyPartner.parents==None): familyPartner.parents = [dniOfPartner]
-            else: familyPartner.family.append(dniOfPartner)
+            if(cont):
+                if(partner.childrens==None): partner.childrens = [dniOfFamily]
+                else: partner.childrens.append(dniOfFamily)
 
-            self.updateDiscount(dniOfPartner, 15, False, True, False)
+                if(familyPartner.parents==None): familyPartner.parents = [dniOfPartner]
+                else: familyPartner.family.append(dniOfPartner)
+
+                self.updateDiscount(dniOfPartner, 15, False, True, False)
+                success = True
+            else:  msg = f"No se ha permitido añadir al socio {dniOfFamily} como hijo del socio {dniOfPartner}"
 
         elif(type=='couple'):
-            partner.couple = dniOfFamily
-            familyPartner.couple = dniOfPartner
+            if(partner.couple == None and familyPartner.couple==None):
+                if(partner.childrens==None and partner.parents==None):
+                    partner.couple = dniOfFamily
+                    familyPartner.couple = dniOfPartner
 
-            self.updateDiscount(dniOfPartner,  10, False, False, True)
+                    self.updateDiscount(dniOfPartner,  10, False, False, True)
+                    success = True
+                else:
+                    cont = True
+                    if(partner.parents!=None):
+                        for p in partner.parents:
+                            if(p==dniOfFamily):
+                                msg = f"No se ha permitido añadir al socio {dniOfFamily} como pareja del socio {dniOfPartner}"
+                                cont = False
+                                break
+                    
+                    if(partner.childrens!=None):
+                        for c in partner.childrens:
+                            if(c==dniOfFamily):
+                                msg = f"No se ha permitido añadir al socio {dniOfFamily} como pareja del socio {dniOfPartner}"
+                                cont = False
+                                break
+                    
+                if(cont):
+                    partner.couple = dniOfFamily
+                    familyPartner.couple = dniOfPartner
 
+                    self.updateDiscount(dniOfPartner,  10, False, False, True)
+                    success = True
+            else:
+                msg = f"No se ha permitido añadir al socio {dniOfFamily} como pareja del socio {dniOfPartner}"
+        
         Persistence.saveData(self.listOfUsers, True, True)
         Persistence.saveFees(self.listOfFees, True)
+
+        if(success): return None
+        else: return msg
 
     def updateDiscount(self, dni: str, discount: float, p: bool, ch: bool, c: bool):
         user = self.listOfUsers.get(dni).partner
@@ -238,9 +330,24 @@ class Club:
         if(c):
             if(user.couple!=None):
                 couple = yearInfo.get(user.couple)
+                childrensPartner = user.childrens 
+                childrensCouple = user.childrens 
                 couple.discount = couple.discount + discount
                 if(newDiscount>=25): couple.discount = 30
                 else: couple.discount = newDiscount
+
+                if(childrensPartner!=None):
+                    for chn in childrensPartner:
+                        cc = yearInfo.get(chn)
+                        c.discount = 30
+                        self.listOfFees[str(date.today().year)][chn] = cc
+    
+                if(childrensPartner!=None):
+                    for chn in childrensCouple:
+                        cc = yearInfo.get(chn)
+                        c.discount = 30
+                        self.listOfFees[str(date.today().year)][chn] = cc
+
                 self.listOfFees[str(date.today().year)][user.couple] = couple
 
         
