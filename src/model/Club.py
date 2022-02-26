@@ -21,6 +21,15 @@ class Club:
     def init(self):
         self.listOfUsers, self.listOfFees, self.listOfEvents = Persistence.init()
 
+    def userCanJoin(self, dni: str):
+        if(self.days_between(str(date.today()), self.listOfFees.get(str(date.today().year)).get(dni).lastPayment)>30): return False
+        else: return True
+
+    def days_between(self, d1, d2):
+        d1 = datetime.strptime(d1, "%Y-%m-%d")
+        d2 = datetime.strptime(d2, "%Y-%m-%d")
+        return abs((d2 - d1).days)
+
     def closeSession(self, dniUserLogin: str):
         Persistence.saveData(self.listOfUsers, True, True)
         Persistence.saveFees(self.listOfFees, True)
@@ -339,13 +348,13 @@ class Club:
                 if(childrensPartner!=None):
                     for chn in childrensPartner:
                         cc = yearInfo.get(chn)
-                        c.discount = 30
+                        cc.discount = 30
                         self.listOfFees[str(date.today().year)][chn] = cc
     
                 if(childrensPartner!=None):
                     for chn in childrensCouple:
                         cc = yearInfo.get(chn)
-                        c.discount = 30
+                        cc.discount = 30
                         self.listOfFees[str(date.today().year)][chn] = cc
 
                 self.listOfFees[str(date.today().year)][user.couple] = couple

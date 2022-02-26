@@ -11,9 +11,12 @@ class UserController:
         self.club = club
         self.club.init()
         userChecked = club.getUser(dni, password)
-        if(userChecked!=None): 
+        if(userChecked!=None and self.club.userCanJoin(userChecked.dni)): 
             self.user = userChecked
             self.run = True
+        elif(not(self.club.userCanJoin(userChecked.dni))):
+            self.run = False
+            printMessage('❗Error en el login: El usuario no ha pagado en 30 dias.', 'red')
         else:
             self.run = False
             printMessage('❗Error en el login: Usuario incorrecto o Contraseña incorrecta.', 'red')

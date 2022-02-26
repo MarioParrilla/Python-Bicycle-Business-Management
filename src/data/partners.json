@@ -16,7 +16,9 @@
         "email": "jsdahjdsjsd@jdjd.com",
         "bikes": [],
         "parents": null,
-        "childrens": null,
+        "childrens": [
+            "55555555L"
+        ],
         "couple": "09876543K"
     },
     {
@@ -25,9 +27,7 @@
         "phonenumber": "789654321",
         "email": "hdhd@gmail.com",
         "bikes": [],
-        "parents": [
-            "71373578G"
-        ],
+        "parents": null,
         "childrens": null,
         "couple": "12345678J"
     },
@@ -37,7 +37,9 @@
         "phonenumber": "723456789",
         "email": "hdhdhdh@ddd.es",
         "bikes": [],
-        "parents": null,
+        "parents": [
+            "12345678J"
+        ],
         "childrens": null,
         "couple": null
     },
@@ -48,9 +50,7 @@
         "email": "pablito@gmail.com",
         "bikes": [],
         "parents": null,
-        "childrens": [
-            "09876543K"
-        ],
+        "childrens": null,
         "couple": null
     }
 ]
